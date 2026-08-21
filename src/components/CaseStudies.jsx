@@ -1,6 +1,7 @@
 import React from 'react';
 import { caseStudies } from '../data/energreenData';
 import { Award, TrendingDown, Sun, Quote, CheckCircle2, Trees, Sparkles, Building2 } from 'lucide-react';
+import commercialCaribeImg from '../assets/images/commercial_solar_caribe.jpg';
 
 export default function CaseStudies({ onOpenQuoteModal }) {
   return (
@@ -25,7 +26,7 @@ export default function CaseStudies({ onOpenQuoteModal }) {
         <div className="glass-fresh-card rounded-3xl overflow-hidden shadow-2xl border border-slate-200 grid grid-cols-1 lg:grid-cols-12 mb-12">
           <div className="lg:col-span-6 h-72 sm:h-96 lg:h-auto relative overflow-hidden">
             <img
-              src="/images/commercial_solar_caribe.jpg"
+              src={commercialCaribeImg}
               alt="Instalación solar comercial en Hotel Caribe San Antero"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />

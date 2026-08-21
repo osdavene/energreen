@@ -1,6 +1,9 @@
 import React from 'react';
 import { Sun, ArrowRight, ShieldCheck, TrendingDown, Zap, Award, Sparkles, CheckCircle2, MapPin, Play } from 'lucide-react';
 import { companyInfo } from '../data/energreenData';
+import monteriaArchImg from '../assets/images/monteria_solar_architecture.jpg';
+import heroSolarHouseImg from '../assets/images/hero_solar_house.jpg';
+import solarPumpingCattleImg from '../assets/images/solar_pumping_cattle.jpg';
 
 export default function Hero({ onOpenQuoteModal }) {
   return (
@@ -46,13 +49,13 @@ export default function Hero({ onOpenQuoteModal }) {
           </div>
         </div>
 
-        {/* Mosaico Visual de Impacto (Editorial Architectural Grid) */}
+        {/* Mosaico Visual de Impacto */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
           
-          {/* Imagen Principal Grande (Arquitectura Sostenible en Montería) */}
+          {/* Imagen Principal Grande */}
           <div className="md:col-span-8 relative rounded-3xl overflow-hidden shadow-2xl group min-h-[380px] sm:min-h-[460px]">
             <img
-              src="/images/monteria_solar_architecture.jpg"
+              src={monteriaArchImg}
               alt="Proyecto solar arquitectónico en Montería Córdoba"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
@@ -96,7 +99,7 @@ export default function Hero({ onOpenQuoteModal }) {
             {/* Tarjeta 1: Residencial */}
             <div className="relative rounded-3xl overflow-hidden shadow-xl group flex-1 min-h-[220px]">
               <img
-                src="/images/hero_solar_house.jpg"
+                src={heroSolarHouseImg}
                 alt="Instalación solar residencial en Montería"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -116,7 +119,7 @@ export default function Hero({ onOpenQuoteModal }) {
             {/* Tarjeta 2: Agropecuario */}
             <div className="relative rounded-3xl overflow-hidden shadow-xl group flex-1 min-h-[220px]">
               <img
-                src="/images/solar_pumping_cattle.jpg"
+                src={solarPumpingCattleImg}
                 alt="Bombeo solar en Córdoba"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />

@@ -17,9 +17,10 @@ import {
   ShieldAlert
 } from 'lucide-react';
 import { productsCatalog, servicesCatalog } from '../data/energreenData';
+import techInstallationImg from '../assets/images/solar_tech_installation.jpg';
 
 export default function ProductsServices({ onOpenQuoteModal }) {
-  const [activeTab, setActiveTab] = useState('servicios'); // 'servicios' | 'productos'
+  const [activeTab, setActiveTab] = useState('servicios');
   const [selectedProductCategory, setSelectedProductCategory] = useState('all');
 
   const categories = [
@@ -126,7 +127,7 @@ export default function ProductsServices({ onOpenQuoteModal }) {
 
               <div className="lg:col-span-6 h-72 sm:h-96 lg:h-full relative overflow-hidden">
                 <img
-                  src="/images/solar_tech_installation.jpg"
+                  src={techInstallationImg}
                   alt="Técnico instalador de paneles solares ENERGREEN"
                   className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                 />

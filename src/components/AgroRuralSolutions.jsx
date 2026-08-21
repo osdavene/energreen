@@ -11,6 +11,7 @@ import {
   TrendingDown,
   ArrowRight
 } from 'lucide-react';
+import solarPumpingImg from '../assets/images/solar_pumping_cattle.jpg';
 
 export default function AgroRuralSolutions({ onOpenQuoteModal }) {
   const agroFeatures = [
@@ -42,7 +43,6 @@ export default function AgroRuralSolutions({ onOpenQuoteModal }) {
   return (
     <section id="agro-rural" className="py-20 md:py-28 bg-white relative border-t border-slate-200">
       
-      {/* Fondo decorativo */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera */}
@@ -64,7 +64,7 @@ export default function AgroRuralSolutions({ onOpenQuoteModal }) {
           
           <div className="lg:col-span-6 relative h-72 sm:h-96 lg:h-auto overflow-hidden">
             <img
-              src="/images/solar_pumping_cattle.jpg"
+              src={solarPumpingImg}
               alt="Bombeo solar de agua para ganadería en Córdoba"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
