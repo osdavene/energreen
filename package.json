@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://osdavene.github.io/energreen/",
+  "homepage": "https://energreen.servigest.online",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

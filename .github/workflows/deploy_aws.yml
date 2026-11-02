@@ -1,0 +1,42 @@
+name: 🚀 Despliegue Automático a AWS (energreen.servigest.online)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Desplegar EnerGreen en energreen.servigest.online
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: 🔐 Ejecutar Despliegue en AWS vía SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          port: ${{ secrets.AWS_PORT || 22 }}
+          script_stop: true
+          script: |
+            echo "🚀 Iniciando despliegue de EnerGreen en energreen.servigest.online..."
+            SITE_DIR="/home/energreen/htdocs/energreen.servigest.online"
+            SITE_USER="energreen"
+
+            sudo git config --global --add safe.directory "$SITE_DIR"
+
+            sudo -u "$SITE_USER" bash << 'EOF'
+            set -e
+            cd "/home/energreen/htdocs/energreen.servigest.online"
+            git fetch origin main
+            git reset --hard origin/main
+            npm ci
+            npm run build
+            EOF
+
+            echo "✅ ¡Despliegue de EnerGreen en energreen.servigest.online completado con éxito en AWS!"
