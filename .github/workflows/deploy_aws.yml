@@ -8,35 +8,45 @@ on:
 
 jobs:
   deploy:
-    name: Desplegar EnerGreen en energreen.servigest.online
+    name: Compilar y Desplegar en AWS
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Clonar repositorio
         uses: actions/checkout@v4
 
-      - name: 🔐 Ejecutar Despliegue en AWS vía SSH
+      - name: 📦 Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 🔨 Compilar producción (Vite build)
+        run: |
+          npm ci
+          npm run build
+
+      - name: 🚀 Sincronizar archivos a AWS CloudPanel
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          port: ${{ secrets.AWS_PORT || 22 }}
+          source: "dist/*"
+          target: "/tmp/energreen_deploy"
+          strip_components: 1
+
+      - name: 🔄 Mover archivos y actualizar permisos en servidor
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_SSH_KEY }}
           port: ${{ secrets.AWS_PORT || 22 }}
-          script_stop: true
           script: |
-            echo "🚀 Iniciando despliegue de EnerGreen en energreen.servigest.online..."
-            SITE_DIR="/home/energreen/htdocs/energreen.servigest.online"
-            SITE_USER="energreen"
-
-            sudo git config --global --add safe.directory "$SITE_DIR"
-
-            sudo -u "$SITE_USER" bash << 'EOF'
-            set -e
-            cd "/home/energreen/htdocs/energreen.servigest.online"
-            git fetch origin main
-            git reset --hard origin/main
-            npm ci
-            npm run build
-            EOF
-
-            echo "✅ ¡Despliegue de EnerGreen en energreen.servigest.online completado con éxito en AWS!"
+            sudo cp -r /tmp/energreen_deploy/* /home/energreen/htdocs/energreen.servigest.online/
+            sudo chown -R energreen:energreen /home/energreen/htdocs/energreen.servigest.online/
+            sudo chmod -R 755 /home/energreen/htdocs/energreen.servigest.online/
+            rm -rf /tmp/energreen_deploy
+            echo "✅ ¡EnerGreen desplegado exitosamente en energreen.servigest.online!"
