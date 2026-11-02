@@ -1,8 +1,8 @@
 import React from 'react';
-import { Sun, Heart, ShieldCheck, ArrowUp, Zap, RotateCcw, GraduationCap } from 'lucide-react';
+import { Sun, Heart, ShieldCheck, ArrowUp, Zap, GraduationCap, MessageCircle } from 'lucide-react';
 import { companyInfo } from '../../data/energreenData';
 
-export default function FooterV2({ onSwitchToV1 }) {
+export default function FooterV2() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -25,7 +25,7 @@ export default function FooterV2({ onSwitchToV1 }) {
                 ENER<span className="text-emerald-400">GREEN</span>
               </span>
               <span className="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-800 font-extrabold px-2 py-0.5 rounded">
-                Hub & Blog
+                Academy & Solutions
               </span>
             </div>
 
@@ -38,15 +38,17 @@ export default function FooterV2({ onSwitchToV1 }) {
               <p className="text-emerald-300 font-bold mt-0.5">“{companyInfo.slogan}”</p>
             </div>
 
-            {/* Botón de alternancia de versión */}
-            <div className="pt-2">
-              <button
-                onClick={onSwitchToV1}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl border border-slate-800 text-[11px] font-bold transition-all"
+            {/* Enlace directo a WhatsApp */}
+            <div className="pt-1">
+              <a
+                href={`https://wa.me/${companyInfo.contact.whatsapp}?text=Hola%20ENERGREEN,%20deseo%20asesoría%20sobre%20energía%20solar`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-[11px] font-bold transition-all shadow-md"
               >
-                <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
-                <span>Volver a la Versión Clásica (v1)</span>
-              </button>
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>Hablar con un Asesor SENA</span>
+              </a>
             </div>
           </div>
 
@@ -54,27 +56,27 @@ export default function FooterV2({ onSwitchToV1 }) {
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">Aprende Solar</h4>
             <ul className="space-y-2">
-              <li><a href="#rutas-v2" className="hover:text-emerald-400 transition-colors">Ahorro Residencial</a></li>
-              <li><a href="#rutas-v2" className="hover:text-emerald-400 transition-colors">Bombeo Solar Ganadero</a></li>
-              <li><a href="#rutas-v2" className="hover:text-emerald-400 transition-colors">Financiación Brilla</a></li>
-              <li><a href="#rutas-v2" className="hover:text-emerald-400 transition-colors">Normativa RETIE</a></li>
-              <li><a href="#laboratorio-v2" className="hover:text-emerald-400 transition-colors">Laboratorio Virtual</a></li>
+              <li><a href="#cursos-v2" className="hover:text-emerald-400 transition-colors">Cursos Aprende.org</a></li>
+              <li><a href="#guias-v2" className="hover:text-emerald-400 transition-colors">Biblioteca de Guías</a></li>
+              <li><a href="#laboratorio-v2" className="hover:text-emerald-400 transition-colors">Laboratorio de Ahorro</a></li>
+              <li><a href="#laboratorio-v2" className="hover:text-emerald-400 transition-colors">Glosario Técnico</a></li>
+              <li><a href="#faq-v2" className="hover:text-emerald-400 transition-colors">Preguntas & Mitos</a></li>
             </ul>
           </div>
 
-          {/* Col 4: Herramientas y Casos */}
+          {/* Col 4: Líneas de Soluciones */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Recursos</h4>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Soluciones Córdoba</h4>
             <ul className="space-y-2">
-              <li><a href="#laboratorio-v2" className="hover:text-amber-400 transition-colors">Simulador de Factura</a></li>
-              <li><a href="#laboratorio-v2" className="hover:text-amber-400 transition-colors">Telemetría IoT en Vivo</a></li>
-              <li><a href="#guias-v2" className="hover:text-amber-400 transition-colors">Guías Prácticas</a></li>
-              <li><a href="#faq-v2" className="hover:text-amber-400 transition-colors">Preguntas Frecuentes</a></li>
-              <li><a href="#sena-v2" className="hover:text-amber-400 transition-colors">Dotación Técnica (40 Herramientas)</a></li>
+              <li><span className="text-slate-300">Sistemas On-Grid Afinia</span></li>
+              <li><span className="text-slate-300">Bombeo Solar en Pozos Profundos</span></li>
+              <li><span className="text-slate-300">Financiación Brilla Surtigas</span></li>
+              <li><span className="text-slate-300">Certificación y Planos RETIE</span></li>
+              <li><span className="text-slate-300">Mantenimiento de Inversores</span></li>
             </ul>
           </div>
 
-          {/* Col 5: SENA 2025 */}
+          {/* Col 5: Créditos SENA */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
               <GraduationCap className="w-4 h-4 text-emerald-400" />
@@ -96,7 +98,7 @@ export default function FooterV2({ onSwitchToV1 }) {
         {/* Barra inferior */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
           <p className="text-slate-400 text-center sm:text-left">
-            © 2025 - 2026 ENERGREEN S.A.S. • servigest.online • Montería, Córdoba - Región Caribe, Colombia.
+            © 2025 - 2026 ENERGREEN S.A.S. • energreen.servigest.online • Montería, Córdoba - Región Caribe, Colombia.
           </p>
 
           <button

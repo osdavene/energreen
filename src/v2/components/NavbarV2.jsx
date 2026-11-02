@@ -4,17 +4,18 @@ import {
   Search, 
   BookOpen, 
   GraduationCap, 
-  RotateCcw, 
   Menu, 
   X, 
-  Calculator,
-  HelpCircle
+  Calculator, 
+  HelpCircle,
+  MessageCircle,
+  Phone
 } from 'lucide-react';
+import { companyInfo } from '../../data/energreenData';
 
 export default function NavbarV2({ 
   searchQuery, 
   setSearchQuery, 
-  onSwitchToV1, 
   onOpenQuoteModal,
   selectedCategory,
   setSelectedCategory,
@@ -27,28 +28,35 @@ export default function NavbarV2({
   return (
     <header className={`sticky top-0 z-50 ${isDark ? 'bg-[#06241c]/95 border-[#155442]' : 'bg-white/95 border-slate-200'} backdrop-blur-md border-b shadow-xs transition-colors duration-300`}>
       
-      {/* Barra de Notificación Aprende.org / Portal Educativo */}
+      {/* Top Bar Institucional SENA + Brilla */}
       <div className={`${isDark ? 'bg-[#031812] border-[#114032]' : theme.topBarBg} text-white text-[11px] sm:text-xs py-2 px-4 border-b transition-colors duration-300`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 truncate">
             <span className={`${theme.topBarBadge} font-black text-[9px] uppercase px-2 py-0.5 rounded-full tracking-wider shrink-0`}>
-              MODO PORTAL EDUCATIVO
+              ENERGREEN CARIBE
             </span>
             <span className="truncate text-slate-300">
-              Cursos gratis, guías técnicas RETIE y dimensionamiento solar • SENA Montería (Ficha 3065832)
+              Formación Solar, Cursos Abiertos, Normativa RETIE y Financiación Brilla • SENA Montería (Ficha 3065832)
             </span>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
-            {/* Botón Destacado para Cambiar a la Web Comercial V1 */}
-            <button
-              onClick={onSwitchToV1}
-              className="inline-flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 px-3 py-1 rounded-full text-[11px] font-black transition-all shadow-sm"
-              title="Volver a la versión comercial clásica de EnerGreen"
+          <div className="flex items-center gap-3 shrink-0 text-[11px]">
+            <a
+              href={`tel:+57${companyInfo.contact.phone.replace(/[^0-9]/g, '')}`}
+              className="hidden sm:inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
-              <RotateCcw className="w-3 h-3 text-slate-950" />
-              <span>Ver Web Comercial (V1)</span>
-            </button>
+              <Phone className="w-3 h-3 text-amber-400" />
+              <span>{companyInfo.contact.phone}</span>
+            </a>
+            <a
+              href={`https://wa.me/${companyInfo.contact.whatsapp}?text=Hola%20ENERGREEN,%20deseo%20asesoría%20sobre%20energía%20solar`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-bold transition-colors"
+            >
+              <MessageCircle className="w-3 h-3 fill-current" />
+              <span>WhatsApp Directo</span>
+            </a>
           </div>
         </div>
       </div>
@@ -57,7 +65,7 @@ export default function NavbarV2({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div className="flex items-center justify-between gap-4">
           
-          {/* Logo Academy & Blog */}
+          {/* Logo Academy & Solutions */}
           <a href="#inicio-v2" className="flex items-center gap-2.5 shrink-0 group">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-amber-400 flex items-center justify-center shadow-md p-0.5 group-hover:scale-105 transition-transform">
               <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
@@ -70,10 +78,12 @@ export default function NavbarV2({
                   ENER<span className="text-emerald-400">GREEN</span>
                 </span>
                 <span className={`text-[10px] font-black px-1.5 py-0.5 rounded uppercase border ${isDark ? 'bg-[#0c372b] text-emerald-300 border-[#155442]' : theme.badge}`}>
-                  Academy & Blog
+                  Academy & Solutions
                 </span>
               </div>
-              <p className={`text-[10px] font-medium ${isDark ? 'text-emerald-300/60' : 'text-slate-400'}`}>Aprende.org + Tiendanube Edition</p>
+              <p className={`text-[10px] font-medium ${isDark ? 'text-emerald-300/60' : 'text-slate-400'}`}>
+                Energía Solar Fotovoltaica • Córdoba
+              </p>
             </div>
           </a>
 
@@ -107,7 +117,7 @@ export default function NavbarV2({
           <nav className={`hidden lg:flex items-center gap-6 text-xs font-bold ${isDark ? 'text-emerald-100/80' : 'text-slate-700'}`}>
             <a href="#cursos-v2" className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
               <GraduationCap className="w-4 h-4 text-emerald-400" />
-              <span>Cursos Aprende.org</span>
+              <span>Cursos Abiertos</span>
             </a>
             <a href="#guias-v2" className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
               <BookOpen className="w-4 h-4 text-emerald-400" />
@@ -115,15 +125,15 @@ export default function NavbarV2({
             </a>
             <a href="#laboratorio-v2" className="flex items-center gap-1.5 hover:text-amber-400 transition-colors">
               <Calculator className="w-4 h-4 text-amber-400" />
-              <span>Laboratorio Virtual</span>
+              <span>Simulador de Ahorro</span>
             </a>
             <a href="#faq-v2" className="flex items-center gap-1.5 hover:text-emerald-300 transition-colors">
               <HelpCircle className="w-4 h-4 text-emerald-400" />
-              <span>Preguntas</span>
+              <span>Preguntas Frecuentes</span>
             </a>
           </nav>
 
-          {/* Botón CTA Cotización */}
+          {/* Botón CTA Cotización con Brilla */}
           <div className="flex items-center gap-2">
             <button
               onClick={onOpenQuoteModal}
@@ -191,18 +201,16 @@ export default function NavbarV2({
             className={`flex items-center gap-2 text-xs font-bold p-2 rounded-xl ${isDark ? 'hover:bg-[#0b352a]' : 'hover:bg-slate-50'}`}
           >
             <Calculator className="w-4 h-4 text-amber-400" />
-            <span>Laboratorio & Calculadora</span>
+            <span>Simulador de Ahorro & Glosario</span>
           </a>
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onSwitchToV1();
-            }}
-            className="w-full text-left flex items-center gap-2 text-xs font-bold text-amber-400 bg-amber-950/40 p-2.5 rounded-xl border border-amber-800/60"
+          <a
+            href="#faq-v2"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`flex items-center gap-2 text-xs font-bold p-2 rounded-xl ${isDark ? 'hover:bg-[#0b352a]' : 'hover:bg-slate-50'}`}
           >
-            <RotateCcw className="w-4 h-4" />
-            <span>Cambiar a Versión Clásica Comercial (V1)</span>
-          </button>
+            <HelpCircle className="w-4 h-4 text-emerald-400" />
+            <span>Preguntas Frecuentes</span>
+          </a>
         </div>
       )}
 

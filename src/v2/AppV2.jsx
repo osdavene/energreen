@@ -17,7 +17,7 @@ import { colorThemes, greenBackgrounds } from './theme/themeData';
 import { companyInfo } from '../data/energreenData';
 import { MessageCircle } from 'lucide-react';
 
-export default function AppV2({ onSwitchToV1 }) {
+export default function AppV2() {
   // Paleta seleccionada: 'eco' (Eco Sinú & Campo)
   const [currentThemeId, setCurrentThemeId] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -26,7 +26,7 @@ export default function AppV2({ onSwitchToV1 }) {
     return 'eco';
   });
 
-  // Tono de Fondo Verde: 'bosque' (Bosque Profundo) como el preferido por el usuario
+  // Tono de Fondo Verde: 'bosque' (Bosque Profundo) como el preferido oficial
   const [currentBgId, setCurrentBgId] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('energreen_v2_bg') || 'bosque';
@@ -102,11 +102,10 @@ export default function AppV2({ onSwitchToV1 }) {
   return (
     <div className={`min-h-screen flex flex-col ${bgStyle.pageBg} text-slate-800 selection:bg-amber-400 selection:text-slate-950 font-sans antialiased transition-colors duration-500`}>
       
-      {/* 1. Header & Top Bar con Buscador y Selector V1 */}
+      {/* 1. Header & Top Bar Institucional SENA */}
       <NavbarV2
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        onSwitchToV1={onSwitchToV1}
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
@@ -174,7 +173,7 @@ export default function AppV2({ onSwitchToV1 }) {
       <NewsletterCommunityV2 />
 
       {/* 10. Pie de Página Institucional */}
-      <FooterV2 onSwitchToV1={onSwitchToV1} />
+      <FooterV2 />
 
       {/* Modal Interactivo de Curso (Aprende.org) */}
       <CourseModalV2
@@ -208,7 +207,7 @@ export default function AppV2({ onSwitchToV1 }) {
       />
 
       {/* Botón Flotante Amigable de WhatsApp */}
-      <div className="fixed bottom-20 sm:bottom-6 right-6 z-40 flex items-center gap-3">
+      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
         <a
           href={`https://wa.me/${companyInfo.contact.whatsapp}?text=Hola%20ENERGREEN,%20deseo%20asesor%C3%ADa%20sobre%20energ%C3%ADa%20solar%20fotovoltaica`}
           target="_blank"
