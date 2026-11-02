@@ -93,7 +93,7 @@ export default function Footer() {
         {/* Barra inferior de copyright y back-to-top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
           <p className="text-slate-400 text-center sm:text-left">
-            © 2025 - 2026 ENERGREEN S.A.S. Todos los derechos reservados. Montería, Córdoba - Región Caribe, Colombia.
+            © 2025 - 2026 ENERGREEN S.A.S. • servigest.online • Montería, Córdoba - Región Caribe, Colombia.
           </p>
 
           <button

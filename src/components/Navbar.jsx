@@ -40,7 +40,7 @@ export default function Navbar({ onOpenQuoteModal }) {
         <span className="inline-flex items-center gap-1 bg-amber-400 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
           <Sun className="w-3 h-3 fill-current" /> 100% Sol
         </span>
-        <span className="hidden sm:inline">¡Montería y Córdoba! Reduce hasta el 70% en tu recibo de energía.</span>
+        <span className="hidden sm:inline">¡Montería, Cereté y Córdoba! Ahorra hasta el 70% en tu factura de energía con el sol del Caribe.</span>
         <span className="sm:hidden">Ahorra hasta 70% en tu factura de energía.</span>
         <a 
           href="#calculadora" 
