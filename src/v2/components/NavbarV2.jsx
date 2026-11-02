@@ -3,17 +3,16 @@ import {
   Sun, 
   Search, 
   BookOpen, 
-  Calculator, 
-  Wheat, 
-  ShieldCheck, 
-  Zap, 
+  GraduationCap, 
+  RotateCcw, 
+  Layers, 
   Menu, 
   X, 
-  ChevronRight,
-  GraduationCap,
   ArrowRight,
   Sparkles,
-  RotateCcw
+  Calculator,
+  HelpCircle,
+  Award
 } from 'lucide-react';
 import { companyInfo } from '../../data/energreenData';
 
@@ -26,90 +25,75 @@ export default function NavbarV2({
   setSelectedCategory
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-
-  const navLinks = [
-    { name: 'Inicio & Destacados', href: '#inicio-v2' },
-    { name: 'Rutas de Aprendizaje', href: '#rutas-v2' },
-    { name: 'Guías & Artículos', href: '#guias-v2' },
-    { name: 'Laboratorio Solar', href: '#laboratorio-v2' },
-    { name: 'Capacitación SENA', href: '#sena-v2' },
-    { name: 'Preguntas Frecuentes', href: '#faq-v2' },
-  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs transition-all">
       
-      {/* Top Banner Aprende.org + SENA */}
-      <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-[11px] sm:text-xs py-1.5 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="bg-amber-400 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full tracking-wider">
-              ENERGREEN HUB
+      {/* Barra de Notificación Aprende.org / Portal Educativo */}
+      <div className="bg-slate-900 text-white text-[11px] sm:text-xs py-2 px-4 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 truncate">
+            <span className="bg-emerald-500 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full tracking-wider shrink-0">
+              MODO PORTAL EDUCATIVO
             </span>
-            <span className="hidden md:inline text-emerald-100">
-              Centro de Aprendizaje & Soluciones Solares • SENA Montería 2025 (Ficha 3065832)
-            </span>
-            <span className="md:hidden text-emerald-100">
-              Aprende Solar • Montería & Córdoba
+            <span className="truncate text-slate-300">
+              Cursos gratis, guías técnicas RETIE y dimensionamiento solar • SENA Montería (Ficha 3065832)
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            {/* Botón para volver a la versión clásica v1 */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Botón Destacado para Cambiar a la Web Comercial V1 */}
             <button
               onClick={onSwitchToV1}
-              className="inline-flex items-center gap-1 bg-white/15 hover:bg-white/25 text-white px-2.5 py-0.5 rounded-full text-[10px] font-bold transition-all border border-white/20"
-              title="Volver a la versión clásica de EnerGreen"
+              className="inline-flex items-center gap-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 px-3 py-1 rounded-full text-[11px] font-black transition-all shadow-sm"
+              title="Volver a la versión comercial clásica de EnerGreen"
             >
-              <RotateCcw className="w-3 h-3" />
-              <span>Ver Versión Clásica (v1)</span>
+              <RotateCcw className="w-3 h-3 text-slate-950" />
+              <span>Ver Web Comercial (V1)</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Main Navbar Tiendanube Style */}
+      {/* Header Principal Tiendanube Blog + Aprende.org */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div className="flex items-center justify-between gap-4">
           
-          {/* Logo con estilo Editorial Educativo */}
+          {/* Logo Academy & Blog */}
           <a href="#inicio-v2" className="flex items-center gap-2.5 shrink-0 group">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-amber-400 flex items-center justify-center shadow-md shadow-emerald-600/20 p-0.5 group-hover:scale-105 transition-transform">
-              <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-                <Sun className="w-5 h-5 text-amber-500 animate-spin-slow" />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 via-teal-500 to-emerald-500 flex items-center justify-center shadow-md p-0.5 group-hover:scale-105 transition-transform">
+              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-amber-400" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-display font-black text-xl tracking-tight text-slate-900 leading-none">
+                <span className="font-display font-black text-xl tracking-tight text-slate-950 leading-none">
                   ENER<span className="text-emerald-600">GREEN</span>
                 </span>
-                <span className="bg-slate-100 text-slate-700 text-[10px] font-black px-1.5 py-0.5 rounded uppercase border border-slate-200">
-                  Blog & Hub
+                <span className="bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-black px-1.5 py-0.5 rounded uppercase">
+                  Academy & Blog
                 </span>
               </div>
-              <span className="text-[10px] text-slate-500 font-medium hidden sm:block mt-0.5">
-                Aprende, calcula y ahorra con energía solar
-              </span>
+              <p className="text-[10px] text-slate-400 font-medium">Aprende.org + Tiendanube Edition</p>
             </div>
           </a>
 
-          {/* Barra de Búsqueda tipo Tiendanube Blog (Desktop) */}
-          <div className="hidden lg:flex items-center flex-1 max-w-md mx-4">
+          {/* Buscador Central Prominente Tipo Tiendanube Blog */}
+          <div className="hidden md:flex flex-1 max-w-md mx-4">
             <div className="relative w-full">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Buscar guías (ej. bombeo, recibo de luz, Brilla, RETIE...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-slate-50 hover:bg-slate-100/80 focus:bg-white text-xs text-slate-800 placeholder-slate-400 rounded-2xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all"
+                placeholder="¿Qué quieres aprender hoy? (ej. Afinia, Brilla, RETIE, Bombeo...)"
+                className="w-full pl-10 pr-4 py-2 bg-slate-100 hover:bg-slate-50 focus:bg-white text-xs text-slate-800 rounded-full border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 outline-none transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 font-bold"
                 >
                   ✕
                 </button>
@@ -117,103 +101,102 @@ export default function NavbarV2({
             </div>
           </div>
 
-          {/* Enlaces de Navegación (Desktop) */}
-          <nav className="hidden xl:flex items-center gap-1">
-            {navLinks.slice(1, 5).map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="px-3 py-1.5 text-xs font-bold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50/60 rounded-xl transition-all"
-              >
-                {link.name}
-              </a>
-            ))}
+          {/* Menú de Navegación de Cursos y Secciones */}
+          <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-700">
+            <a href="#cursos-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+              <GraduationCap className="w-4 h-4 text-blue-600" />
+              <span>Cursos Aprende.org</span>
+            </a>
+            <a href="#guias-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+              <BookOpen className="w-4 h-4 text-emerald-600" />
+              <span>Revista & Guías</span>
+            </a>
+            <a href="#laboratorio-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+              <Calculator className="w-4 h-4 text-amber-500" />
+              <span>Laboratorio Virtual</span>
+            </a>
+            <a href="#faq-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+              <HelpCircle className="w-4 h-4 text-slate-500" />
+              <span>Preguntas</span>
+            </a>
           </nav>
 
-          {/* Botones de Acción */}
-          <div className="flex items-center gap-2 shrink-0">
-            {/* Botón de Búsqueda Móvil */}
-            <button
-              onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-100 lg:hidden"
-              aria-label="Abrir buscador"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-
+          {/* Botón CTA Cotización */}
+          <div className="flex items-center gap-2">
             <button
               onClick={onOpenQuoteModal}
-              className="px-4 py-2 text-xs font-extrabold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
+              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
             >
-              <Zap className="w-3.5 h-3.5 text-amber-300 fill-current" />
-              <span>Cotizar Proyecto</span>
+              <Sun className="w-3.5 h-3.5 fill-current" />
+              <span className="hidden sm:inline">Cotizar con Brilla</span>
+              <span className="sm:hidden">Cotizar</span>
             </button>
 
+            {/* Botón Hamburguesa Móvil */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-slate-900 xl:hidden"
-              aria-label="Menú móvil"
+              className="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors"
+              aria-label="Abrir menú"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
         </div>
 
-        {/* Buscador Expandible en Móvil */}
-        {searchOpen && (
-          <div className="mt-3 pt-3 border-t border-slate-100 lg:hidden animate-fadeIn">
-            <div className="relative w-full">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-              <input
-                type="text"
-                placeholder="Buscar guías (ej. bombeo, Brilla, RETIE...)"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                autoFocus
-                className="w-full pl-9 pr-4 py-2.5 bg-slate-50 text-xs text-slate-800 placeholder-slate-400 rounded-xl border border-slate-200 focus:border-emerald-500 focus:bg-white outline-none"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
+        {/* Buscador en Móvil */}
+        <div className="mt-2.5 md:hidden">
+          <div className="relative w-full">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar guías o cursos solares..."
+              className="w-full pl-10 pr-4 py-2 bg-slate-100 text-xs text-slate-800 rounded-full border border-slate-200 outline-none"
+            />
           </div>
-        )}
+        </div>
+
       </div>
 
-      {/* Menú Desplegable Móvil */}
+      {/* Menú Móvil Desplegable */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 shadow-2xl animate-fadeIn">
-          <div className="flex flex-col gap-1.5">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between px-3.5 py-2.5 text-xs font-bold text-slate-700 hover:bg-emerald-50 rounded-xl hover:text-emerald-700 transition-colors"
-              >
-                <span>{link.name}</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
-              </a>
-            ))}
-            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2 mt-2">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onSwitchToV1();
-                }}
-                className="w-full py-2.5 px-3 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors flex items-center justify-center gap-2"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Cambiar a Versión Clásica (v1)</span>
-              </button>
-            </div>
-          </div>
+        <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+          <a
+            href="#cursos-v2"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 text-xs font-bold text-slate-800 p-2 rounded-xl hover:bg-slate-50"
+          >
+            <GraduationCap className="w-4 h-4 text-blue-600" />
+            <span>Cursos Abiertos Aprende.org</span>
+          </a>
+          <a
+            href="#guias-v2"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 text-xs font-bold text-slate-800 p-2 rounded-xl hover:bg-slate-50"
+          >
+            <BookOpen className="w-4 h-4 text-emerald-600" />
+            <span>Biblioteca de Artículos</span>
+          </a>
+          <a
+            href="#laboratorio-v2"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 text-xs font-bold text-slate-800 p-2 rounded-xl hover:bg-slate-50"
+          >
+            <Calculator className="w-4 h-4 text-amber-500" />
+            <span>Laboratorio & Calculadora</span>
+          </a>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onSwitchToV1();
+            }}
+            className="w-full text-left flex items-center gap-2 text-xs font-bold text-amber-700 bg-amber-50 p-2.5 rounded-xl border border-amber-200"
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span>Cambiar a Versión Clásica Comercial (V1)</span>
+          </button>
         </div>
       )}
 

@@ -1,310 +1,331 @@
 import { companyInfo, tariffHistory, caseStudies } from '../../data/energreenData';
 
-export const v2LearningTracks = [
+// Rutas de Cursos Formativos al estilo Aprende.org / Capacítate para el Empleo
+export const v2Courses = [
   {
-    id: 'hogar',
-    title: 'Ahorro Solar Residencial',
-    subtitle: 'Para casas y apartamentos en Montería y Córdoba',
-    icon: 'Sun',
-    color: 'from-amber-500 to-orange-500',
-    lightBg: 'bg-amber-50',
-    border: 'border-amber-200',
-    textColor: 'text-amber-800',
-    badge: 'Hogares',
-    modulesCount: 4,
-    readTime: '15 min de aprendizaje',
-    desc: 'Aprende cómo dimensionar un sistema solar para tu tejado, leer tu factura de Afinia y reducir hasta el 70% de tus cobros mensuales.'
+    id: 'curso-residencial',
+    title: 'Instalador Fotovoltaico Residencial',
+    category: 'Oficios Solares',
+    level: 'Inicial a Intermedio',
+    duration: '16 Lecciones • 20 Horas',
+    iconColor: 'bg-amber-500',
+    badgeColor: 'bg-amber-100 text-amber-900 border-amber-200',
+    coverImage: 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=800&q=80',
+    shortDesc: 'Aprende a diagnosticar techos en Montería, calcular paneles necesarios y ensamblar sistemas conectados a la red.',
+    instructor: 'Oscar David Vega (Técnico Electrónico SENA)',
+    modules: [
+      {
+        title: 'Módulo 1: Fundamentos de Energía Solar y Radiación en Córdoba',
+        lessons: [
+          { title: '1.1 Qué son las Horas Sol Pico (HSP) en el Caribe colombiano (5.3 HSP)', type: 'video', duration: '8 min' },
+          { title: '1.2 Anatomía de un módulo monocristalino de alta eficiencia (550W+)', type: 'reading', duration: '6 min' },
+          { title: '1.3 Cómo leer y auditar el historial de kWh en la factura de Afinia', type: 'practice', duration: '12 min' }
+        ]
+      },
+      {
+        title: 'Módulo 2: Inversores, Protecciones y Seguridad Eléctrica',
+        lessons: [
+          { title: '2.1 Inversores On-Grid vs Microinversores vs Sistemas Híbridos', type: 'video', duration: '10 min' },
+          { title: '2.2 Cajas de protecciones DC/AC y descargadores de sobretensión (DPS)', type: 'reading', duration: '8 min' },
+          { title: '2.3 Normas de seguridad en alturas y anclajes en techos de teja y losa', type: 'practice', duration: '15 min' }
+        ]
+      },
+      {
+        title: 'Módulo 3: Trámites CREG 174 y Conexión a la Red',
+        lessons: [
+          { title: '3.1 Requisitos para legalización ante Afinia como autogenerador AGPE', type: 'reading', duration: '10 min' },
+          { title: '3.2 Instalación del medidor bidireccional y venta de excedentes', type: 'practice', duration: '14 min' }
+        ]
+      }
+    ]
   },
   {
-    id: 'agro',
-    title: 'Bombeo & Agro Ganadero',
-    subtitle: 'Soluciones hídricas y energéticas para fincas',
-    icon: 'Wheat',
-    color: 'from-emerald-500 to-teal-600',
-    lightBg: 'bg-emerald-50',
-    border: 'border-emerald-200',
-    textColor: 'text-emerald-800',
-    badge: 'Agro & Fincas',
-    modulesCount: 5,
-    readTime: '20 min de aprendizaje',
-    desc: 'Cómo extraer agua de pozos profundos y represas con bombas solares sumergibles sin gastar un solo galón de ACPM o gasolina.'
+    id: 'curso-bombeo-agro',
+    title: 'Sistemas de Bombeo Solar para el Campo y Ganadería',
+    category: 'Agropecuario & Fincas',
+    level: 'Técnico Especializado',
+    duration: '12 Lecciones • 15 Horas',
+    iconColor: 'bg-emerald-600',
+    badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-200',
+    coverImage: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
+    shortDesc: 'Diseño e instalación de motobombas solares sumergibles para pozos profundos, represas y bebederos de ganado.',
+    instructor: 'Samir Padilla (Especialista Agro-Solar EnerGreen)',
+    modules: [
+      {
+        title: 'Módulo 1: Requerimientos Hídricos y Aforo de Pozos',
+        lessons: [
+          { title: '1.1 Cálculo de consumo diario en cabezas de ganado bovino (40-60 L/día)', type: 'video', duration: '7 min' },
+          { title: '1.2 Medición de altura manométrica dinámica y distancia al reservorio', type: 'reading', duration: '9 min' }
+        ]
+      },
+      {
+        title: 'Módulo 2: Bombas Sumergibles Helicoidales vs Centrífugas',
+        lessons: [
+          { title: '2.1 Controladores MPPT para arranque suave sin picos de arranque', type: 'practice', duration: '12 min' },
+          { title: '2.2 Comparativa de costos: Paneles Solares vs Planta Diésel a 5 años', type: 'reading', duration: '8 min' }
+        ]
+      }
+    ]
   },
   {
-    id: 'finanzas',
-    title: 'Financiación Brilla & Ley 1715',
-    subtitle: '0% cuota inicial y beneficios tributarios',
-    icon: 'Coins',
-    color: 'from-teal-500 to-cyan-600',
-    lightBg: 'bg-teal-50',
-    border: 'border-teal-200',
-    textColor: 'text-teal-800',
-    badge: 'Finanzas',
-    modulesCount: 3,
-    readTime: '12 min de aprendizaje',
-    desc: 'Descubre cómo pagar tus paneles solares mes a mes a través de tu factura de gas domiciliario con Brilla y deducir hasta 50% de renta.'
+    id: 'curso-retie',
+    title: 'Normativa RETIE y Mantenimiento Electrónico',
+    category: 'Certificación Técnica',
+    level: 'Avanzado',
+    duration: '14 Lecciones • 18 Horas',
+    iconColor: 'bg-blue-600',
+    badgeColor: 'bg-blue-100 text-blue-900 border-blue-200',
+    coverImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    shortDesc: 'Protocolos de certificación RETIE, medición de puesta a tierra, curvas I-V y mantenimiento preventivo.',
+    instructor: 'Cristian Ospina (Técnico de Campo SENA)',
+    modules: [
+      {
+        title: 'Módulo 1: Puesta a Tierra y Conexiones Equipotenciales',
+        lessons: [
+          { title: '1.1 Medición de resistividad con telurómetro en suelos de Córdoba', type: 'video', duration: '11 min' },
+          { title: '1.2 Conexión de varillas de cobre y soldadura exotérmica', type: 'practice', duration: '14 min' }
+        ]
+      },
+      {
+        title: 'Módulo 2: Inspección y Diagnóstico con Cámaras Termográficas',
+        lessons: [
+          { title: '2.1 Detección de puntos calientes (hotspots) y diodos de bypass', type: 'reading', duration: '9 min' },
+          { title: '2.2 Protocolo de limpieza sin daño a la capa antirreflectiva', type: 'practice', duration: '10 min' }
+        ]
+      }
+    ]
   },
   {
-    id: 'retie',
-    title: 'Seguridad & Normativa RETIE',
-    subtitle: 'Ingeniería certificada y protección de equipos',
-    icon: 'ShieldCheck',
-    color: 'from-blue-600 to-indigo-600',
-    lightBg: 'bg-blue-50',
-    border: 'border-blue-200',
-    textColor: 'text-blue-800',
-    badge: 'Normativa',
-    modulesCount: 4,
-    readTime: '18 min de aprendizaje',
-    desc: 'Requisitos técnicos, puestas a tierra, fusibles fotovoltaicos y trámites de conexión de excedentes ante el operador de red CREG.'
-  },
-  {
-    id: 'sena',
-    title: 'Capacitación Técnica SENA',
-    subtitle: 'Formación profesional en electrónica solar',
-    icon: 'GraduationCap',
-    color: 'from-purple-600 to-pink-600',
-    lightBg: 'bg-purple-50',
-    border: 'border-purple-200',
-    textColor: 'text-purple-800',
-    badge: 'SENA 2025',
-    modulesCount: 6,
-    readTime: 'Certificación Técnica',
-    desc: 'Plan curricular del Técnico en Mantenimiento y Ensamble de Equipos Electrónicos (Ficha 3065832) - SENA Montería.'
+    id: 'curso-finanzas',
+    title: 'Financiación Brilla, Ley 1715 y Retorno de Inversión',
+    category: 'Finanzas & Proyectos',
+    level: 'General & Empresarial',
+    duration: '8 Lecciones • 10 Horas',
+    iconColor: 'bg-teal-600',
+    badgeColor: 'bg-teal-100 text-teal-900 border-teal-200',
+    coverImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+    shortDesc: 'Aprende a formular el proyecto financiero para financiar hasta el 100% del sistema solar en el recibo de gas.',
+    instructor: 'Oscar David Vega (Gestor de Proyectos)',
+    modules: [
+      {
+        title: 'Módulo 1: Mecanismo de Crédito Brilla de Surtigas',
+        lessons: [
+          { title: '1.1 Requisitos del titular de la factura de gas y montos disponibles', type: 'video', duration: '6 min' },
+          { title: '1.2 Cómo la cuota mensual se paga con el ahorro de Afinia', type: 'practice', duration: '10 min' }
+        ]
+      },
+      {
+        title: 'Módulo 2: Beneficios Tributarios de la Ley 1715',
+        lessons: [
+          { title: '2.1 Deducción especial de hasta el 50% en el Impuesto de Renta', type: 'reading', duration: '8 min' },
+          { title: '2.2 Exención de IVA (0%) y aranceles en equipos importados', type: 'reading', duration: '7 min' }
+        ]
+      }
+    ]
   }
 ];
 
+// Artículos de Revista / Blog tipo Tiendanube
 export const v2Articles = [
   {
     id: 'guia-hogar-2026',
-    trackId: 'hogar',
-    category: 'Ahorro en el Hogar',
-    title: 'Guía Completa: Cómo pasar tu casa a energía solar en Montería y reducir 70% de luz',
-    excerpt: 'En Córdoba la tarifa por kWh supera los $1.065 COP. Esta guía práctica te enseña paso a paso cuántos paneles caben en tu techo, cómo calcular tu consumo y cuánto dinero te ahorras desde el primer mes.',
-    readTime: '5 min de lectura',
-    level: 'Nivel Principiante',
+    title: 'Cómo reducir el 70% de tu recibo de luz en Montería con energía solar',
+    category: 'Hogar & Ahorro',
+    excerpt: 'En el Caribe el kWh supera los $1.065 COP. Descubre cuántos paneles caben en tu techo, cómo calcular tu consumo exacto y financiar con Brilla.',
     author: {
       name: 'Oscar David Vega',
-      role: 'Técnico Electrónico SENA • EnerGreen',
+      role: 'Técnico Electrónico SENA • Ficha 3065832',
       avatar: 'OV'
     },
-    date: 'Actualizado Noviembre 2026',
-    image: '/assets/hero_solar_house-BvvwMY1C.jpg',
+    date: '28 Octubre 2026',
+    readTime: '6 min de lectura',
     featured: true,
-    tags: ['#Montería', '#AhorroLuz', '#TejadosSolares', '#Brilla'],
-    keyTakeaways: [
-      'Una familia promedio en estrato 3 en Montería consume ~450 kWh ($480.000 COP/mes).',
-      'Con un sistema de 6 paneles solares de 550W produces ~410 kWh al mes.',
-      'Tu factura de energía se reduce a solo cargos fijos mínimos (~$120.000 COP).',
-      'Financiable con Brilla Gases de Córdoba sin fiador ni codeudor.'
-    ],
-    fullContent: `
-### 1. ¿Por qué la energía solar es tan rentable en Montería y Córdoba?
-El departamento de Córdoba goza de una de las irradiancias solares más privilegiadas del mundo, con un promedio de **5.2 kWh por metro cuadrado al día** y más de 2.200 horas de sol intenso al año. Mientras en ciudades frías se necesitan más paneles para generar la misma potencia, en el Sinú cada metro cuadrado de tejado produce energía al máximo rendimiento.
+    views: '2.8k vistas',
+    tags: ['Montería', 'Factura Afinia', 'Brilla Surtigas', 'Paneles Monocristalinos'],
+    image: 'https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=900&q=80',
+    content: `
+# Cómo reducir el 70% de tu recibo de luz en Montería con energía solar
 
-### 2. Cómo interpretar tu recibo de luz (Afinia)
-En tu recibo de energía debes buscar dos datos esenciales:
-- **Consumo en kWh del mes:** Generalmente ubicado en el histórico de barras.
-- **Costo unitario del kWh (CU):** En Montería oscila entre $1.020 y $1.085 COP por kWh para estratos residenciales y comerciales.
+En el departamento de Córdoba y gran parte del Caribe colombiano, las tarifas eléctricas han sido un dolor de cabeza permanente. Con valores que superan los **$1.065 COP por kilovatio-hora (kWh)** en estratos 3 a 5, un hogar promedio en Montería con 2 o 3 aires acondicionados tipo Split puede recibir facturas mensuales entre **$450.000 y $1.200.000 COP**.
 
-### 3. ¿Cuántos paneles necesita una casa promedio?
-- **Casa pequeña (Consumo 250 - 350 kWh):** Requiere un sistema de 1.8 a 2.4 kWp (4 a 5 paneles de 550W). Ahorro estimado: ~$260.000 COP/mes.
-- **Casa familiar mediana (Consumo 450 - 650 kWh):** Requiere un sistema de 3.3 a 4.4 kWp (6 a 8 paneles de 550W). Ahorro estimado: ~$480.000 COP/mes.
-- **Casa con varios aires acondicionados (Consumo 800 - 1.500 kWh):** Requiere de 6.0 a 10.0 kWp (11 a 18 paneles). Ahorro estimado: ~$900.000+ COP/mes.
+### 1. La radiación solar en Córdoba: Nuestro mayor tesoro
+Montería cuenta con un promedio de **5.3 Horas Sol Pico (HSP)** al día. Esto significa que cada metro cuadrado de tejado recibe suficiente energía fotónica para producir más de 1.450 kWh por kilovatio pico instalado al año.
 
-### 4. Retorno de inversión garantizado
-Un sistema fotovoltaico residencial en Montería se amortiza entre **3.0 y 3.8 años**. Como la vida útil garantizada de los paneles es de **25 a 30 años**, disfrutas de más de 20 años de electricidad prácticamente gratuita.
+### 2. ¿Cuántos paneles necesitas según tu factura mensual?
+* **Factura de $350.000 COP/mes (aprox 320 kWh):** Requiere un sistema de **2.5 kWp** (unos 4 a 5 paneles monocristalinos de 550W). Ocupa 12 m² de techo.
+* **Factura de $600.000 COP/mes (aprox 560 kWh):** Requiere un sistema de **4.4 kWp** (unos 8 paneles). Ocupa 20 m² de techo.
+* **Factura de $1.200.000 COP/mes (aprox 1.100 kWh):** Requiere un sistema de **8.8 kWp** (unos 16 paneles). Ocupa 40 m² de techo.
+
+### 3. Financiación inteligente con el programa Brilla
+El mayor obstáculo solía ser la inversión inicial. Sin embargo, en Montería EnerGreen permite financiar el 100% de la instalación a través de tu cupo **Brilla de Surtigas**. La cuota mensual se amortiza automáticamente con lo que dejas de pagarle a Afinia cada mes.
     `
   },
   {
-    id: 'bombeo-solar-fincas',
-    trackId: 'agro',
+    id: 'bombeo-solar-ganaderia',
+    title: 'Bombeo Solar en Fincas de Córdoba: Adiós al gasto en plantas de gasolina',
     category: 'Agro & Bombeo',
-    title: 'Bombeo Solar en Córdoba: Agua para tu ganado las 24 horas sin gastar combustible diésel',
-    excerpt: 'Las plantas a diésel consumen millones de pesos mensuales en ACPM y mantenimiento mecánico. Descubre cómo las bombas solares sumergibles extraen agua de pozos profundos de forma 100% automática.',
-    readTime: '4 min de lectura',
-    level: 'Nivel Intermedio',
+    excerpt: 'Guía práctica para extraer hasta 40.000 litros diarios de agua de pozos profundos usando motobombas sumergibles fotovoltaicas.',
     author: {
       name: 'Samir Padilla',
-      role: 'Especialista en Agro-Energía • EnerGreen',
+      role: 'Especialista en Sistemas Rurales',
       avatar: 'SP'
     },
-    date: 'Noviembre 2026',
-    image: '/assets/solar_pumping_cattle-DNjtT6wk.jpg',
+    date: '25 Octubre 2026',
+    readTime: '7 min de lectura',
     featured: false,
-    tags: ['#Cereté', '#Ganadería', '#BombeoSolar', '#SinDiésel'],
-    keyTakeaways: [
-      'Elimina el 100% del gasto mensual en galones de ACPM y cambios de aceite.',
-      'Bombas sumergibles en acero inoxidable para pozos de 30 a 120 metros de profundidad.',
-      'Operación automática con sensores de nivel en pozo y flotador en reservorio.',
-      'Ideal para hatos lecheros y de ceba en Cereté, Sahagún, Lorica y San Carlos.'
-    ],
-    fullContent: `
-### El problema del bombeo convencional con motobombas a combustible
-En las sabanas de Córdoba y los valles del Sinú y San Jorge, el acceso continuo al agua para el ganado es la mayor prioridad de un productor. Tradicionalmente se utilizan motobombas diésel o a gasolina, las cuales presentan severas desventajas:
-- Gasto continuo de $1.200.000 a $3.500.000 COP mensuales en ACPM y traslados.
-- Daños mecánicos recurrentes por calentamiento y fallas en carburadores o inyectores.
-- Contaminación por derrames de hidrocarburos cerca de las fuentes de agua.
+    views: '1.9k vistas',
+    tags: ['Ganadería Córdoba', 'Pozos Profundos', 'Bomba Sumergible', 'Cero Diésel'],
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80',
+    content: `
+# Bombeo Solar en Fincas de Córdoba: Cero ACPM y Agua Continua
 
-### Cómo funciona el bombeo solar fotovoltaico directo
-1. **Generador Fotovoltaico:** Módulos solares montados en estructura metálica fija orientada al sur.
-2. **Controlador / Variador Solar MPPT:** Convierte la corriente directa de los paneles en la frecuencia exacta que necesita la bomba, adaptándose automáticamente a la radiación disponible.
-3. **Bomba Sumergible Helicoidal o Centrífuga:** Fabricada en acero inoxidable grado AISI 304/316, instalada en el fondo del pozo profundo.
-4. **Almacenamiento en Altura:** El agua se bombea durante el día a tanques elevados o represas, permitiendo distribución por gravedad las 24 horas sin requerir costosas baterías.
+Durante la temporada seca en el Valle del Sinú y las sabanas de Córdoba, mantener el agua para el ganado bovino es vital. El costo de operar una motobomba a diésel supera los $25.000 a $40.000 COP diarios en combustible.
+
+### Ventajas del Bombeo Fotovoltaico Directo:
+1. **Sin baterías costosas**: El sistema bombea directamente mientras hay luz solar hacia un reservorio elevado.
+2. **Vida útil superior a 20 años**: Los paneles solares no tienen piezas móviles y resisten las altas temperaturas del trópico.
+3. **Arranque suave MPPT**: Los controladores solares modernos regulan las RPM de la bomba para aprovechar incluso días con nubosidad leve.
     `
   },
   {
-    id: 'convenio-brilla-paso-a-paso',
-    trackId: 'finanzas',
-    category: 'Financiación',
-    title: 'Convenio Brilla Gases de Córdoba: Financia tus paneles solares con tu recibo de gas',
-    excerpt: '¿No tienes el dinero de contado? Gracias al cupo Brilla de Surtigas / Gases de Córdoba puedes pagar tu sistema fotovoltaico en cuotas mensuales cómodas sin trámites bancarios ni fiador.',
-    readTime: '3 min de lectura',
-    level: 'Nivel Principiante',
-    author: {
-      name: 'Cristian Ospina',
-      role: 'Asesor Técnico y Financiero • EnerGreen',
-      avatar: 'CO'
-    },
-    date: 'Noviembre 2026',
-    image: '/assets/monteria_solar_architecture-BbAW3uVf.jpg',
-    featured: false,
-    tags: ['#Brilla', '#GasesDeCordoba', '#SinCuotaInicial', '#Financiacion'],
-    keyTakeaways: [
-      'Aprobación rápida según el cupo asignado en tu factura de gas natural.',
-      'Plazos flexibles desde 12 hasta 60 meses.',
-      'La matemática mágica: Tu ahorro en energía cubre el valor de la cuota Brilla.',
-      'Aplica para estratos 2, 3, 4, 5 y 6 en Montería y municipios cordobeses.'
-    ],
-    fullContent: `
-### ¿Qué es el programa Brilla y cómo financia la energía solar?
-Brilla es un crédito no bancario otorgado a través de la factura de gas natural domiciliario. Si eres usuario puntual de gas en Córdoba, cuentas con un cupo preaprobado que puede ser utilizado para adquirir bienes de mejora para el hogar y proyectos solares.
-
-### El principio de la autofinanciación solar
-El mayor atractivo de financiar con Brilla es que **el sistema se paga con su propio ahorro**:
-- Supongamos que pagas $550.000 COP al mes de luz.
-- Con EnerGreen instalas paneles solares y tu factura de luz baja a $140.000 COP (ahorro de $410.000 COP/mes).
-- Tu cuota de financiación Brilla queda en ~$320.000 COP/mes.
-- **Resultado:** ¡Pagas la cuota del sistema solar y todavía te sobran $90.000 COP libres en tu bolsillo cada mes!
-    `
-  },
-  {
-    id: 'normativa-retie-seguridad',
-    trackId: 'retie',
-    category: 'Seguridad & RETIE',
-    title: 'Por qué la certificación RETIE es obligatoria en instalaciones solares y cómo protege tu predio',
-    excerpt: 'Instalar paneles sin normas técnicas puede causar incendios por arcos eléctricos de corriente continua o daños en aires acondicionados. Conoce las normas RETIE y CREG 174.',
-    readTime: '4 min de lectura',
-    level: 'Nivel Avanzado',
-    author: {
-      name: 'Jhonatan Javier Marmol',
-      role: 'Ingeniero Instructor SENA • Especialista RETIE',
-      avatar: 'JM'
-    },
-    date: 'Noviembre 2026',
-    image: '/assets/solar_tech_installation-DCTx-Gbx.jpg',
-    featured: false,
-    tags: ['#RETIE', '#Seguridad', '#CREG', '#IngenieriaSENA'],
-    keyTakeaways: [
-      'Cumplimiento estricto del Reglamento Técnico de Instalaciones Eléctricas (RETIE).',
-      'Protecciones contra sobretensiones transitorias (DPS) para rayos en el Caribe.',
-      'Cálculo de mallas de puesta a tierra con telurómetro digital certificado.',
-      'Legalización del trámite de venta de excedentes de energía ante Afinia / CREG.'
-    ],
-    fullContent: `
-### La corriente continua (DC) en sistemas fotovoltaicos
-Los paneles solares generan electricidad en Corriente Continua (DC) a voltajes que pueden superar los 400 a 800 Voltios. A diferencia de la corriente alterna doméstica, un arco eléctrico en DC no se extingue por sí solo al pasar por cero, lo que representa un riesgo crítico de fuego si no se usan:
-- Cables solares con doble aislamiento resistente a rayos UV e intemperie (H1Z2Z2-K).
-- Conectores MC4 originales debidamente crimpados con herramienta de torque calibrada.
-- Seccionadores bajo carga e interruptores termomagnéticos exclusivos para corriente continua.
-
-### El trámite de conexión y venta de excedentes (Resolución CREG 174)
-Cuando tu tejado produce más energía de la que consumes al mediodía, esa energía limpia se inyecta a la red eléctrica de Afinia. Con el medidor bidireccional certificado por EnerGreen, el operador de red te descuenta esa energía en tu siguiente factura.
-    `
-  },
-  {
-    id: 'comercio-hoteles-caribe',
-    trackId: 'hogar',
-    category: 'Comercio & Hoteles',
-    title: 'Caso de Estudio: Cómo un Hotel Boutique en San Antero redujo $5.800.000 mensuales en aire acondicionado',
-    excerpt: 'Los hoteles y restaurantes en las costas de Córdoba sufren altísimos costos por climatización. Este proyecto de 35 kWp logró amortización en 3.1 años y cero quejas por bajones de luz.',
-    readTime: '4 min de lectura',
-    level: 'Nivel Intermedio',
+    id: 'guia-brilla-paso-a-paso',
+    title: 'Crédito Brilla para Paneles Solares: Requisitos y cómo solicitarlo sin cuota inicial',
+    category: 'Finanzas & Ahorro',
+    excerpt: 'Paso a paso para usar tu recibo del gas como medio de pago para instalar energía solar en tu casa o negocio sin endeudarte con bancos.',
     author: {
       name: 'Oscar David Vega',
-      role: 'Co-Fundador EnerGreen',
+      role: 'Técnico Electrónico SENA • Ficha 3065832',
       avatar: 'OV'
     },
-    date: 'Octubre 2026',
-    image: '/assets/commercial_solar_caribe-dMh8o74J.jpg',
+    date: '21 Octubre 2026',
+    readTime: '5 min de lectura',
     featured: false,
-    tags: ['#SanAntero', '#Hoteles', '#Climatizacion', '#RetornoInversion'],
-    keyTakeaways: [
-      'Sistema On-Grid de 35 kWp con 64 paneles de alta eficiencia.',
-      'Ahorro verificado de $5.800.000 COP al mes.',
-      '41.5 toneladas de CO₂ evitadas cada año.',
-      'Deducción de hasta el 50% de la inversión en el impuesto de renta (Ley 1715).'
-    ],
-    fullContent: `
-### El reto en el sector hotelero costero
-El Hotel Boutique Sol & Mar en San Antero enfrentaba recibos de energía que superaban los $8.000.000 COP al mes debido a 22 habitaciones con aire acondicionado inverter, zona húmeda de piscinas y cocina industrial.
+    views: '3.1k vistas',
+    tags: ['Crédito Brilla', 'Surtigas', 'Sin Cuota Inicial', 'Financiación'],
+    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80',
+    content: `
+# Crédito Brilla para Paneles Solares: Guía Práctica
 
-### La solución de ingeniería ENERGREEN
-- Diseño e instalación de 64 paneles monocristalinos de 550W en cubierta metálica.
-- Inversor trifásico inteligente de 30 kW con monitoreo IoT en la nube.
-- Banco de protección contra descargas atmosféricas y ambiente salino.
-- Tramitación de certificación RETIE y registro UPME para acogerse a los beneficios de la Ley 1715 de 2014.
+El crédito Brilla de Surtigas se ha convertido en el aliado financiero más accesible de las familias cordobesas. 
+
+### ¿Quién puede aplicar?
+* Titulares de la factura de gas con al menos 2 pagos puntuales consecutivos.
+* No se requieren extractos bancarios ni codeudores con finca raíz.
+* Plazos flexibles de hasta 60 meses.
     `
   },
   {
-    id: 'capacitacion-sena-monteria',
-    trackId: 'sena',
-    category: 'Educación & SENA',
-    title: 'Proyecto Técnico SENA 2025: Innovación en electrónica solar desde el corazón de Córdoba',
-    excerpt: 'Conoce los fundamentos pedagógicos y tecnológicos del programa Técnico en Mantenimiento y Ensamble de Equipos Electrónicos (Ficha 3065832) que dieron origen a EnerGreen.',
-    readTime: '5 min de lectura',
-    level: 'Nivel Formativo',
+    id: 'retie-seguridad-instalacion',
+    title: '¿Por qué la certificación RETIE es obligatoria en proyectos solares?',
+    category: 'Normativa & RETIE',
+    excerpt: 'Riesgos de contratar instaladores informales. Descubre qué protecciones DC/AC exige la ley colombiana para evitar incendios y daños.',
     author: {
-      name: 'Equipo Técnico EnerGreen',
-      role: 'SENA Regional Córdoba',
-      avatar: 'SENA'
+      name: 'Cristian Ospina',
+      role: 'Técnico de Campo SENA',
+      avatar: 'CO'
     },
-    date: 'Noviembre 2026',
-    image: '/assets/monteria_solar_architecture-BbAW3uVf.jpg',
+    date: '17 Octubre 2026',
+    readTime: '6 min de lectura',
     featured: false,
-    tags: ['#SENA', '#Ficha3065832', '#Montería', '#TalentoLocal'],
-    keyTakeaways: [
-      'Desarrollado en el Centro de Comercio, Industria y Turismo de Córdoba - Montería.',
-      'Más de 40 herramientas físicas y tecnológicas empleadas en el proyecto.',
-      'Enfoque en Objetivos de Desarrollo Sostenible (ODS 7, 11 y 13).',
-      'Formación integral orientada al mercado laboral de la transición energética.'
-    ],
-    fullContent: `
-### El origen institucional de EnerGreen
-EnerGreen nació en las aulas y laboratorios del SENA Regional Córdoba en Montería, bajo el programa de formación profesional **Técnico en Mantenimiento y Ensamble de Equipos Electrónicos (Ficha: 3065832)**.
+    views: '1.4k vistas',
+    tags: ['Seguridad Eléctrica', 'RETIE', 'Puesta a Tierra', 'CREG 174'],
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80',
+    content: `
+# Normativa RETIE en Energía Solar: La Garantía de tu Inversión
 
-Bajo la instrucción del docente **Jhonatan Javier Marmol**, los aprendices e investigadores **Oscar David Vega, Samir Padilla y Cristian Ospina** estructuraron un proyecto integral que combina:
-- Diagnóstico técnico de pérdidas y curvas I-V en celdas solares.
-- Ensamble de inversores y controladores con telemetría IoT.
-- Viabilidad financiera y modelos de negocio inclusivos para estratos populares y ganaderos.
+Una instalación solar no es simplemente colocar paneles sobre un techo. Maneja voltajes en corriente continua (DC) que pueden superar los 600V a 1000V.
+
+### Aspectos no negociables en EnerGreen:
+* Sistema de puesta a tierra con resistencia inferior a 10 Ohmios.
+* Supresores de sobretensión tipo DPS para proteger contra descargas atmosféricas.
+* Microinversores o inversores certificados con apagado rápido anti-isla.
+    `
+  },
+  {
+    id: 'sena-innovacion-electronica',
+    title: 'Proyecto Formativo SENA Montería: De la teoría a la empresa real',
+    category: 'Capacitación & SENA',
+    excerpt: 'Cómo la Ficha 3065832 dio origen a EnerGreen S.A.S. integrando mantenimiento electrónico y diseño de sistemas solares.',
+    author: {
+      name: 'Oscar David Vega',
+      role: 'Técnico Electrónico SENA • Ficha 3065832',
+      avatar: 'OV'
+    },
+    date: '10 Octubre 2026',
+    readTime: '4 min de lectura',
+    featured: false,
+    views: '2.2k vistas',
+    tags: ['SENA Montería', 'Ficha 3065832', 'Electrónica', 'Emprendimiento'],
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
+    content: `
+# Innovación desde el SENA Regional Córdoba
+
+EnerGreen nació como el proyecto formativo de la **Ficha 3065832** en Mantenimiento y Ensamble de Equipos Electrónicos.
+
+Guiados por el instructor Jhonatan Marmol, el equipo integrado por Oscar David Vega, Samir Padilla y Cristian Ospina diseñó una solución integral que hoy ayuda a cientos de familias y productores agrícolas a tener autonomía energética.
+    `
+  },
+  {
+    id: 'ley-1715-tributaria',
+    title: 'Ley 1715 y Ley 2099: Cómo descontar el 50% de tu instalación solar en la Renta',
+    category: 'Finanzas & Ahorro',
+    excerpt: 'Los incentivos tributarios en Colombia que convierten a la energía solar en la inversión más rentable para personas naturales y empresas.',
+    author: {
+      name: 'Oscar David Vega',
+      role: 'Técnico Electrónico SENA',
+      avatar: 'OV'
+    },
+    date: '05 Octubre 2026',
+    readTime: '5 min de lectura',
+    featured: false,
+    views: '1.8k vistas',
+    tags: ['Beneficios DIAN', 'Ley 1715', 'Cero Aranceles', 'Exención IVA'],
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+    content: `
+# Beneficios Tributarios de la Ley 1715 en Colombia
+
+El gobierno nacional otorga beneficios tributarios sin precedentes a quienes invierten en fuentes no convencionales de energía renovable (FNCER).
+
+### Los 4 Grandes Beneficios:
+1. **Deducción de Renta**: Puedes deducir hasta el 50% del valor total de la inversión en tu declaración de renta durante 15 años.
+2. **Depreciación Acelerada**: Amortización contable de hasta el 33% anual.
+3. **Exención de IVA**: Paneles solares, inversores y controladores están exentos de IVA (0%).
+4. **Exención Arancelaria**: Equipos importados para energía solar no pagan aranceles de importación.
     `
   }
 ];
 
+// Glosario Interactivo para el Laboratorio Virtual
+export const v2Glossary = [
+  { term: 'kWh (Kilovatio-Hora)', def: 'Unidad de medida con la que Afinia cobra la energía consumida durante el mes. En Montería supera los $1.065 COP.' },
+  { term: 'HSP (Horas Sol Pico)', def: 'Cantidad equivalente de horas al día en que la radiación solar alcanza los 1.000 W/m². Córdoba goza de un excelente promedio de 5.3 HSP.' },
+  { term: 'Inversor On-Grid', def: 'Equipo electrónico que convierte la corriente continua (DC) de los paneles en corriente alterna (AC) sincronizada con la red eléctrica.' },
+  { term: 'Medidor Bidireccional', def: 'Contador digital que registra tanto la energía que consumes de la red como los excedentes que tus paneles le inyectan a Afinia.' },
+  { term: 'Controlador MPPT', def: 'Algoritmo de seguimiento del punto de máxima potencia que optimiza el rendimiento del panel solar ante variaciones de temperatura y radiación.' },
+  { term: 'RETIE', def: 'Reglamento Técnico de Instalaciones Eléctricas de Colombia, normatividad legal que garantiza la seguridad y previene incendios o choques eléctricos.' }
+];
+
+
+// Preguntas frecuentes sobre energía solar en Montería y Córdoba
 export const v2FaqList = [
   {
-    q: '¿Qué pasa los días nublados o lluviosos en Montería?',
-    a: 'Los paneles solares fotovoltaicos funcionan con radiación solar (luz visible e infrarroja), no con calor directo. En días nublados siguen generando entre un 25% y 40% de su potencia nominal gracias a la radiación difusa. Y si tienes sistema On-Grid, la red eléctrica convencional respalda instantáneamente sin que notes ningún parpadeo.'
+    q: '¿Los paneles solares funcionan en días nublados o lluviosos en Montería?',
+    a: 'Sí. Los paneles fotovoltaicos monocristalinos captan la radiación difusa incluso con cielo nublado, generando entre el 25% y 40% de su capacidad nominal. Además, la lluvia limpia naturalmente el polvo acumulado sobre el vidrio templado.'
   },
   {
-    q: '¿Cuánto tiempo dura una instalación solar y qué mantenimiento requiere?',
-    a: 'Los paneles solares Tier-1 tienen una vida útil garantizada de 25 a 30 años con degradación mínima (<0.5% anual). El mantenimiento principal es muy sencillo: lavar el polvo de los paneles con agua limpia cada 2 o 3 meses y una inspección eléctrica anual de apriete de bornes y revisión termográfica.'
+    q: '¿Cómo funciona la financiación con Crédito Brilla de Surtigas?',
+    a: 'Financiamos el 100% de los paneles, inversores y montaje a través del cupo de tu recibo del gas natural. No necesitas codeudores ni hipotecas; la cuota mensual se cobra en el mismo recibo de gas y se paga sola con el ahorro de energía que dejas de pagarle a Afinia.'
   },
   {
-    q: '¿Cómo funciona la venta de excedentes de energía con Afinia?',
-    a: 'Bajo la regulación CREG 174, cuando tus paneles producen más energía de la que consumes (por ejemplo, entre 11:00 AM y 2:00 PM cuando no estás en casa), esa energía se inyecta a la red de Afinia. Tu medidor bidireccional la registra y Afinia te descuenta esos kilovatios de tu consumo nocturno.'
+    q: '¿Afinia me descuenta los excedentes de energía que produzco?',
+    a: 'Sí, bajo la regulación CREG 174 y Ley 1715. Al instalar un medidor bidireccional certificado por EnerGreen, toda la energía solar que no consumas durante el día se inyecta a la red de Afinia y se te acredita como saldo a favor en tus facturas siguientes.'
   },
   {
-    q: '¿Puedo independizarme totalmente de la red eléctrica?',
-    a: 'Sí, mediante un sistema Off-Grid (Aislado) o Híbrido con baterías de litio LiFePO4. Es la solución ideal para fincas en zonas rurales (ZNI) en Tierralta, San Carlos o Ayapel donde no llega el tendido eléctrico o los cortes son muy frecuentes.'
+    q: '¿Qué mantenimiento requieren los paneles y cuál es su vida útil?',
+    a: 'El mantenimiento es mínimo: lavado con agua y cepillo suave cada 2 a 3 meses para remover polvo. Los paneles solares tienen una garantía de rendimiento de 25 a 30 años con degradación inferior al 0.5% anual.'
+  },
+  {
+    q: '¿Qué diferencia hay entre un técnico empírico y un egresado SENA certificado RETIE?',
+    a: 'El cumplimiento estricto del RETIE (Reglamento Técnico de Instalaciones Eléctricas). Una instalación informal puede generar sobretensiones, incendios por arco eléctrico o el rechazo de conexión por parte del operador de red. En EnerGreen entregamos planos visados y memorias de cálculo avaladas por técnicos SENA de la Ficha 3065832.'
   }
 ];

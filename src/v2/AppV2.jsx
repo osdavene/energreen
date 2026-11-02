@@ -1,17 +1,17 @@
 import React, { useState, useMemo } from 'react';
 import NavbarV2 from './components/NavbarV2';
 import HeroV2 from './components/HeroV2';
+import CourseCatalogV2 from './components/CourseCatalogV2';
+import CourseModalV2 from './components/CourseModalV2';
 import CategoryPillsV2 from './components/CategoryPillsV2';
-import LearningPathsV2 from './components/LearningPathsV2';
 import FeaturedArticlesV2 from './components/FeaturedArticlesV2';
 import InteractiveLabV2 from './components/InteractiveLabV2';
-import CourseModulesV2 from './components/CourseModulesV2';
 import FaqSectionV2 from './components/FaqSectionV2';
 import NewsletterCommunityV2 from './components/NewsletterCommunityV2';
 import ArticleModalV2 from './components/ArticleModalV2';
 import FooterV2 from './components/FooterV2';
 import ContactModal from '../components/ContactModal';
-import { v2Articles } from './data/v2Data';
+import { v2Articles, v2Courses } from './data/v2Data';
 import { companyInfo } from '../data/energreenData';
 import { MessageCircle } from 'lucide-react';
 
@@ -19,21 +19,20 @@ export default function AppV2({ onSwitchToV1 }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeArticleId, setActiveArticleId] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
 
-  // Filtrado de artículos según categoría y búsqueda
+  // Filtrado de artículos de revista
   const filteredArticles = useMemo(() => {
     return v2Articles.filter((art) => {
-      // Filtro de categoría
       const matchesCategory =
         selectedCategory === 'all' ||
-        (selectedCategory === 'hogar' && (art.category.toLowerCase().includes('hogar') || art.category.toLowerCase().includes('residencial'))) ||
-        (selectedCategory === 'agro' && (art.category.toLowerCase().includes('agro') || art.category.toLowerCase().includes('bombeo') || art.category.toLowerCase().includes('finca'))) ||
-        (selectedCategory === 'finanzas' && (art.category.toLowerCase().includes('finanzas') || art.category.toLowerCase().includes('brilla') || art.category.toLowerCase().includes('costo'))) ||
-        (selectedCategory === 'retie' && (art.category.toLowerCase().includes('retie') || art.category.toLowerCase().includes('seguridad') || art.category.toLowerCase().includes('normativa'))) ||
-        (selectedCategory === 'sena' && (art.category.toLowerCase().includes('sena') || art.category.toLowerCase().includes('capacitaci') || art.category.toLowerCase().includes('taller')));
+        (selectedCategory === 'hogar' && (art.category.toLowerCase().includes('hogar') || art.category.toLowerCase().includes('ahorro'))) ||
+        (selectedCategory === 'agro' && (art.category.toLowerCase().includes('agro') || art.category.toLowerCase().includes('bombeo'))) ||
+        (selectedCategory === 'finanzas' && (art.category.toLowerCase().includes('finanzas') || art.category.toLowerCase().includes('brilla'))) ||
+        (selectedCategory === 'retie' && (art.category.toLowerCase().includes('retie') || art.category.toLowerCase().includes('normativa'))) ||
+        (selectedCategory === 'sena' && (art.category.toLowerCase().includes('sena') || art.category.toLowerCase().includes('capacitaci')));
 
-      // Filtro de texto de búsqueda
       const query = searchQuery.trim().toLowerCase();
       const matchesQuery =
         !query ||
@@ -46,46 +45,29 @@ export default function AppV2({ onSwitchToV1 }) {
     });
   }, [selectedCategory, searchQuery]);
 
-  // Contadores por categoría para las píldoras
+  // Contadores para pastillas de categorías
   const counts = useMemo(() => {
     const c = { all: v2Articles.length, hogar: 0, agro: 0, finanzas: 0, retie: 0, sena: 0 };
     v2Articles.forEach((art) => {
       const cat = art.category.toLowerCase();
-      if (cat.includes('hogar') || cat.includes('residencial')) c.hogar++;
-      if (cat.includes('agro') || cat.includes('bombeo') || cat.includes('finca')) c.agro++;
-      if (cat.includes('finanzas') || cat.includes('brilla') || cat.includes('costo')) c.finanzas++;
-      if (cat.includes('retie') || cat.includes('seguridad') || cat.includes('normativa')) c.retie++;
-      if (cat.includes('sena') || cat.includes('capacitaci') || cat.includes('taller')) c.sena++;
+      if (cat.includes('hogar') || cat.includes('ahorro')) c.hogar++;
+      if (cat.includes('agro') || cat.includes('bombeo')) c.agro++;
+      if (cat.includes('finanzas') || cat.includes('brilla')) c.finanzas++;
+      if (cat.includes('retie') || cat.includes('normativa')) c.retie++;
+      if (cat.includes('sena') || cat.includes('capacitaci')) c.sena++;
     });
     return c;
   }, []);
 
-  // Artículo activo para el modal lector
   const activeArticle = useMemo(() => {
     if (!activeArticleId) return null;
     return v2Articles.find((a) => a.id === activeArticleId) || v2Articles[0];
   }, [activeArticleId]);
 
-  const handleOpenArticle = (id) => {
-    setActiveArticleId(id);
-  };
-
-  const handleCloseArticle = () => {
-    setActiveArticleId(null);
-  };
-
-  const handleSelectTrack = (trackCategory) => {
-    setSelectedCategory(trackCategory);
-    const guiasElement = document.getElementById('guias-v2');
-    if (guiasElement) {
-      guiasElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 selection:bg-emerald-500 selection:text-white font-sans antialiased">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800 selection:bg-emerald-500 selection:text-white font-sans antialiased">
       
-      {/* Navegación V2 Tipo Aprende.org + Tiendanube */}
+      {/* 1. Header & Top Bar con Buscador y Selector V1 */}
       <NavbarV2
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -95,64 +77,70 @@ export default function AppV2({ onSwitchToV1 }) {
         setSelectedCategory={setSelectedCategory}
       />
 
-      {/* Hero Editorial Destacado con Mini Simulador Táctil */}
+      {/* 2. Hero Editorial Tipo Tiendanube Blog (Portada + Lo Más Leído) */}
       <HeroV2
-        onOpenArticle={handleOpenArticle}
+        onOpenArticle={(id) => setActiveArticleId(id)}
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
       />
 
-      {/* Píldoras de Filtro Tipo Tiendanube Blog */}
+      {/* 3. Catálogo de Cursos y Oficios Abiertos Tipo Aprende.org */}
+      <CourseCatalogV2
+        onSelectCourse={(course) => setSelectedCourse(course)}
+        onOpenQuoteModal={() => setQuoteModalOpen(true)}
+      />
+
+      {/* 4. Pastillas de Filtro de Revista */}
       <CategoryPillsV2
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
         counts={counts}
       />
 
-      {/* Rutas de Aprendizaje Modulares Tipo Aprende.org */}
-      <LearningPathsV2
-        onSelectTrack={handleSelectTrack}
-        onOpenQuoteModal={() => setQuoteModalOpen(true)}
-      />
-
-      {/* Biblioteca de Guías y Artículos con Filtro */}
+      {/* 5. Biblioteca de Guías y Artículos Magazine (Grid 3 columnas) */}
       <FeaturedArticlesV2
         articles={filteredArticles}
-        onOpenArticle={handleOpenArticle}
+        onOpenArticle={(id) => setActiveArticleId(id)}
         searchQuery={searchQuery}
         selectedCategory={selectedCategory}
       />
 
-      {/* Laboratorio Virtual Solar & Telemetría IoT en Tiempo Real */}
+      {/* 6. Laboratorio Virtual de Prácticas y Glosario Solar Aprende.org */}
       <InteractiveLabV2
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
       />
 
-      {/* Módulos de Formación Técnica y Respaldo Académico SENA */}
-      <CourseModulesV2
-        onOpenQuoteModal={() => setQuoteModalOpen(true)}
-      />
-
-      {/* Preguntas Frecuentes y Mitos de Energía Solar en Córdoba */}
+      {/* 7. Preguntas Frecuentes y Mitos en Córdoba */}
       <FaqSectionV2 />
 
-      {/* Comunidad Solar & Boletín Educativo */}
+      {/* 8. Boletín Informativo de la Comunidad Solar */}
       <NewsletterCommunityV2 />
 
-      {/* Pie de Página Institucional V2 */}
+      {/* 9. Pie de Página Institucional */}
       <FooterV2 onSwitchToV1={onSwitchToV1} />
 
-      {/* Modal Lector de Artículos Tipo Blog Tiendanube */}
+      {/* Modal Interactivo de Curso (Aprende.org) */}
+      <CourseModalV2
+        course={selectedCourse}
+        isOpen={!!selectedCourse}
+        onClose={() => setSelectedCourse(null)}
+        onOpenQuoteModal={() => {
+          setSelectedCourse(null);
+          setQuoteModalOpen(true);
+        }}
+      />
+
+      {/* Modal Lector de Artículos (Tiendanube Blog) */}
       <ArticleModalV2
         article={activeArticle}
         isOpen={!!activeArticleId}
-        onClose={handleCloseArticle}
+        onClose={() => setActiveArticleId(null)}
         onOpenQuoteModal={() => {
           setActiveArticleId(null);
           setQuoteModalOpen(true);
         }}
       />
 
-      {/* Modal General de Cotización de EnerGreen */}
+      {/* Modal de Cotización */}
       <ContactModal
         isOpen={quoteModalOpen}
         onClose={() => setQuoteModalOpen(false)}
