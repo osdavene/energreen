@@ -18,7 +18,7 @@ import { companyInfo } from '../data/energreenData';
 import { MessageCircle } from 'lucide-react';
 
 export default function AppV2({ onSwitchToV1 }) {
-  // Paleta seleccionada: 'eco' (Eco Sinú & Campo) por defecto
+  // Paleta seleccionada: 'eco' (Eco Sinú & Campo)
   const [currentThemeId, setCurrentThemeId] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('energreen_theme') || 'eco';
@@ -26,16 +26,16 @@ export default function AppV2({ onSwitchToV1 }) {
     return 'eco';
   });
 
-  // Tono de Fondo Verde (sin fondo blanco): 'salvia' por defecto
+  // Tono de Fondo Verde: 'bosque' (Bosque Profundo) como el preferido por el usuario
   const [currentBgId, setCurrentBgId] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('energreen_v2_bg') || 'salvia';
+      return localStorage.getItem('energreen_v2_bg') || 'bosque';
     }
-    return 'salvia';
+    return 'bosque';
   });
 
   const theme = colorThemes[currentThemeId] || colorThemes.eco;
-  const bgStyle = greenBackgrounds[currentBgId] || greenBackgrounds.salvia;
+  const bgStyle = greenBackgrounds[currentBgId] || greenBackgrounds.bosque;
 
   const handleSelectTheme = (themeId) => {
     setCurrentThemeId(themeId);
@@ -111,6 +111,7 @@ export default function AppV2({ onSwitchToV1 }) {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* 2. Barra Interactiva de Selección de Tonos de Fondo Verde */}
@@ -185,6 +186,7 @@ export default function AppV2({ onSwitchToV1 }) {
           setQuoteModalOpen(true);
         }}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* Modal Lector de Artículos (Tiendanube Blog) */}
@@ -196,6 +198,7 @@ export default function AppV2({ onSwitchToV1 }) {
           setActiveArticleId(null);
           setQuoteModalOpen(true);
         }}
+        bgStyle={bgStyle}
       />
 
       {/* Modal de Cotización */}
