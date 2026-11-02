@@ -1,21 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { 
   Calculator, 
   Sun, 
-  Zap, 
   TrendingDown, 
-  ShieldCheck, 
   Coins, 
-  BookOpen, 
-  Sparkles,
-  ArrowRight,
-  HelpCircle,
-  Award
+  BookOpen 
 } from 'lucide-react';
-import { companyInfo } from '../../data/energreenData';
 import { v2Glossary } from '../data/v2Data';
 
-export default function InteractiveLabV2({ onOpenQuoteModal }) {
+export default function InteractiveLabV2({ onOpenQuoteModal, theme }) {
   const [billAmount, setBillAmount] = useState(650000);
   const [selectedTerm, setSelectedTerm] = useState(48); // meses
   const [activeGlossaryTerm, setActiveGlossaryTerm] = useState(0);
@@ -39,8 +32,8 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
         
         {/* Cabecera del Laboratorio Aprende.org */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-black uppercase tracking-wider mb-3">
-            <Calculator className="w-4 h-4 text-emerald-700" />
+          <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ${theme.badge} text-[11px] font-black uppercase tracking-wider mb-3`}>
+            <Calculator className="w-4 h-4" />
             <span>Laboratorio Virtual de Prácticas • Taller de Dimensionamiento</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black font-display text-slate-900 tracking-tight">
@@ -62,7 +55,7 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
                 <label className="text-xs font-black uppercase tracking-wider text-slate-700">
                   ¿Cuánto pagas actualmente a Afinia cada mes?
                 </label>
-                <span className="text-lg font-black text-emerald-700 font-display">
+                <span className={`text-lg font-black ${theme.accentText} font-display`}>
                   ${billAmount.toLocaleString('es-CO')} COP
                 </span>
               </div>
@@ -73,7 +66,7 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
                 step={25000}
                 value={billAmount}
                 onChange={(e) => setBillAmount(Number(e.target.value))}
-                className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                className={`w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer ${theme.sliderAccent}`}
               />
               <div className="flex justify-between text-[10px] text-slate-400 font-bold mt-1">
                 <span>$200.000 (Estrato 2-3)</span>
@@ -114,10 +107,10 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
               </div>
 
               <div className="bg-white p-4 rounded-2xl border border-slate-200 text-center">
-                <TrendingDown className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
+                <TrendingDown className={`w-5 h-5 ${theme.accentText} mx-auto mb-1`} />
                 <p className="text-[10px] uppercase font-bold text-slate-400">Ahorro Mensual</p>
-                <p className="text-xl font-black text-emerald-700 font-display">-${estimatedMonthlySavings.toLocaleString('es-CO')}</p>
-                <p className="text-[10px] text-emerald-600 font-semibold">Reducción del 72%</p>
+                <p className={`text-xl font-black ${theme.accentText} font-display`}>-${estimatedMonthlySavings.toLocaleString('es-CO')}</p>
+                <p className={`text-[10px] ${theme.accentText} font-semibold`}>Reducción del 72%</p>
               </div>
 
               <div className="bg-white p-4 rounded-2xl border border-slate-200 text-center col-span-2 sm:col-span-1">
@@ -129,18 +122,18 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
             </div>
 
             {/* Balance Financiero Neto */}
-            <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-200 flex items-center justify-between">
+            <div className={`${theme.accentBgLight} rounded-2xl p-4 border ${theme.accentBorderLight} flex items-center justify-between`}>
               <div>
-                <p className="text-xs font-bold text-emerald-900">
+                <p className={`text-xs font-bold ${theme.accentText}`}>
                   {netMonthlyCashflow >= 0 ? '¡El ahorro supera la cuota desde el mes 1!' : 'Inversión casi neutra mes a mes'}
                 </p>
-                <p className="text-[11px] text-emerald-700">
+                <p className={`text-[11px] ${theme.accentTextLight}`}>
                   Tu nuevo recibo de energía bajará a aprox: <strong>${newMonthlyBill.toLocaleString('es-CO')} COP/mes</strong>.
                 </p>
               </div>
               <button
                 onClick={onOpenQuoteModal}
-                className="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl transition-colors shrink-0"
+                className={`px-4 py-2 ${theme.primaryButton} font-bold text-xs rounded-xl transition-colors shrink-0`}
               >
                 Solicitar Visita
               </button>
@@ -151,7 +144,7 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
           {/* Columna Derecha (5 cols): Glosario Técnico Interactivo Aprende.org */}
           <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
             <div className="flex items-center gap-2 pb-3 border-b border-slate-100">
-              <BookOpen className="w-5 h-5 text-blue-600" />
+              <BookOpen className={`w-5 h-5 ${theme.accentText}`} />
               <div>
                 <h3 className="text-sm font-black font-display text-slate-900 uppercase tracking-wider">
                   Glosario Técnico Solar (SENA)
@@ -167,13 +160,13 @@ export default function InteractiveLabV2({ onOpenQuoteModal }) {
                   onClick={() => setActiveGlossaryTerm(idx)}
                   className={`p-3 rounded-xl border text-xs cursor-pointer transition-all ${
                     activeGlossaryTerm === idx
-                      ? 'bg-blue-50/70 border-blue-300 shadow-xs'
+                      ? `${theme.accentBgLight} ${theme.accentBorderLight} shadow-xs`
                       : 'bg-slate-50/70 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
                   <p className="font-bold text-slate-900 flex items-center justify-between">
                     <span>{item.term}</span>
-                    <span className="text-[10px] text-blue-600 font-extrabold">{activeGlossaryTerm === idx ? '▲' : '▼'}</span>
+                    <span className={`text-[10px] ${theme.accentText} font-extrabold`}>{activeGlossaryTerm === idx ? '▲' : '▼'}</span>
                   </p>
                   {activeGlossaryTerm === idx && (
                     <p className="mt-2 text-slate-600 leading-relaxed text-[11px]">

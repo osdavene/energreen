@@ -5,17 +5,18 @@ import {
   ArrowRight, 
   Tag, 
   User, 
-  CheckCircle2,
-  Calendar,
-  Sparkles,
-  FileQuestion
+  CheckCircle2, 
+  Calendar, 
+  Sparkles, 
+  FileQuestion 
 } from 'lucide-react';
 
 export default function FeaturedArticlesV2({ 
   articles, 
   onOpenArticle, 
   searchQuery, 
-  selectedCategory 
+  selectedCategory,
+  theme
 }) {
   return (
     <section id="guias-v2" className="py-16 md:py-20 bg-white">
@@ -24,8 +25,8 @@ export default function FeaturedArticlesV2({
         {/* Cabecera Tipo Tiendanube Blog */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-4 border-b border-slate-100">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-[11px] font-extrabold uppercase tracking-wider mb-2">
-              <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${theme.badge} text-[11px] font-black uppercase tracking-wider mb-2`}>
+              <BookOpen className="w-3.5 h-3.5" />
               <span>Biblioteca de Guías & Artículos Prácticos</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-black font-display text-slate-900 tracking-tight">
@@ -56,7 +57,7 @@ export default function FeaturedArticlesV2({
             <article
               key={art.id}
               onClick={() => onOpenArticle(art.id)}
-              className="bg-white rounded-3xl border border-slate-200 hover:border-emerald-300 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer group hover:-translate-y-1"
+              className={`bg-white rounded-3xl border border-slate-200 ${theme.cardBorderHover} shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer group hover:-translate-y-1`}
             >
               <div>
                 {/* Imagen del Artículo con Badge */}
@@ -80,13 +81,13 @@ export default function FeaturedArticlesV2({
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {art.tags.slice(0, 3).map((tag, tIdx) => (
-                      <span key={tIdx} className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                      <span key={tIdx} className={`text-[10px] font-bold ${theme.accentText} ${theme.accentBgLight} px-2 py-0.5 rounded-md`}>
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <h3 className="text-lg font-display font-black text-slate-900 leading-snug mb-2 group-hover:text-emerald-700 transition-colors line-clamp-2">
+                  <h3 className={`text-lg font-display font-black text-slate-900 leading-snug mb-2 group-hover:${theme.accentText} transition-colors line-clamp-2`}>
                     {art.title}
                   </h3>
 
@@ -108,7 +109,7 @@ export default function FeaturedArticlesV2({
                   </div>
                 </div>
 
-                <span className="text-xs font-bold text-emerald-700 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span className={`text-xs font-bold ${theme.accentText} flex items-center gap-1 group-hover:translate-x-1 transition-transform`}>
                   <span>Leer</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>

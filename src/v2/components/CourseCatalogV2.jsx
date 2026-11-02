@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { v2Courses } from '../data/v2Data';
 
-export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
+export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, theme }) {
   return (
     <section id="cursos-v2" className="py-16 md:py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,13 +22,13 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
         {/* Cabecera Aprende.org Style */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-900 border border-blue-200 text-[11px] font-black uppercase tracking-wider mb-3">
-              <GraduationCap className="w-4 h-4 text-blue-700" />
+            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${theme.badge} text-[11px] font-black uppercase tracking-wider mb-3`}>
+              <GraduationCap className="w-4 h-4" />
               <span>Plataforma de Formación • Estilo Aprende.org</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black font-display text-slate-900 tracking-tight">
               Capacítate en Energía Solar: <br className="hidden sm:inline" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-teal-700 to-emerald-700">
+              <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>
                 Cursos Abiertos y Oficios Técnicos
               </span>
             </h2>
@@ -53,7 +53,7 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
           {v2Courses.map((course) => (
             <div
               key={course.id}
-              className="bg-white rounded-3xl border border-slate-200 hover:border-blue-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5"
+              className={`bg-white rounded-3xl border border-slate-200 ${theme.cardBorderHover} shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5`}
             >
               <div>
                 {/* Portada del Curso */}
@@ -77,11 +77,11 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
                 {/* Contenido del Card */}
                 <div className="p-5 space-y-3">
                   <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span className={`w-2 h-2 rounded-full ${theme.accentDot}`}></span>
                     <span>{course.level}</span>
                   </div>
 
-                  <h3 className="text-base font-black font-display text-slate-900 leading-snug group-hover:text-blue-700 transition-colors line-clamp-2">
+                  <h3 className={`text-base font-black font-display text-slate-900 leading-snug group-hover:${theme.accentText} transition-colors line-clamp-2`}>
                     {course.title}
                   </h3>
 
@@ -99,7 +99,7 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
 
                 <button
                   onClick={() => onSelectCourse(course)}
-                  className="w-full py-2.5 px-4 bg-slate-900 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 group-hover:shadow-md"
+                  className={`w-full py-2.5 px-4 bg-slate-900 hover:${theme.accentBgLight} hover:${theme.accentText} text-white hover:border hover:${theme.accentBorderLight} font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 group-hover:shadow-md`}
                 >
                   <BookOpen className="w-3.5 h-3.5" />
                   <span>Ver Temario & Clases</span>
@@ -113,7 +113,7 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
         {/* Fila Informativa de Certificación SENA */}
         <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-lg shadow-emerald-600/30">
+            <div className={`w-14 h-14 rounded-2xl ${theme.accentBgLight} ${theme.accentText} border ${theme.accentBorderLight} flex items-center justify-center shrink-0 shadow-md`}>
               <Award className="w-8 h-8" />
             </div>
             <div>
@@ -128,7 +128,7 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal }) {
 
           <button
             onClick={onOpenQuoteModal}
-            className="w-full md:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md shadow-emerald-600/20 flex items-center justify-center gap-2 shrink-0 transition-all"
+            className={`w-full md:w-auto px-6 py-3 ${theme.primaryButton} font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 shrink-0 transition-all`}
           >
             <span>Postular Hoja de Vida / Alianza</span>
             <ArrowRight className="w-4 h-4" />

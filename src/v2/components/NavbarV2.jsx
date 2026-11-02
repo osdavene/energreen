@@ -5,16 +5,11 @@ import {
   BookOpen, 
   GraduationCap, 
   RotateCcw, 
-  Layers, 
   Menu, 
   X, 
-  ArrowRight,
-  Sparkles,
   Calculator,
-  HelpCircle,
-  Award
+  HelpCircle
 } from 'lucide-react';
-import { companyInfo } from '../../data/energreenData';
 
 export default function NavbarV2({ 
   searchQuery, 
@@ -22,7 +17,8 @@ export default function NavbarV2({
   onSwitchToV1, 
   onOpenQuoteModal,
   selectedCategory,
-  setSelectedCategory
+  setSelectedCategory,
+  theme
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -30,10 +26,10 @@ export default function NavbarV2({
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs transition-all">
       
       {/* Barra de Notificación Aprende.org / Portal Educativo */}
-      <div className="bg-slate-900 text-white text-[11px] sm:text-xs py-2 px-4 border-b border-slate-800">
+      <div className={`${theme.topBarBg} text-white text-[11px] sm:text-xs py-2 px-4 border-b border-slate-800 transition-colors duration-300`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 truncate">
-            <span className="bg-emerald-500 text-slate-950 font-black text-[9px] uppercase px-2 py-0.5 rounded-full tracking-wider shrink-0">
+            <span className={`${theme.topBarBadge} font-black text-[9px] uppercase px-2 py-0.5 rounded-full tracking-wider shrink-0`}>
               MODO PORTAL EDUCATIVO
             </span>
             <span className="truncate text-slate-300">
@@ -69,9 +65,9 @@ export default function NavbarV2({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="font-display font-black text-xl tracking-tight text-slate-950 leading-none">
-                  ENER<span className="text-emerald-600">GREEN</span>
+                  ENER<span className={theme.accentTextLight}>GREEN</span>
                 </span>
-                <span className="bg-blue-50 text-blue-800 border border-blue-200 text-[10px] font-black px-1.5 py-0.5 rounded uppercase">
+                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded uppercase border ${theme.badge}`}>
                   Academy & Blog
                 </span>
               </div>
@@ -103,29 +99,29 @@ export default function NavbarV2({
 
           {/* Menú de Navegación de Cursos y Secciones */}
           <nav className="hidden lg:flex items-center gap-6 text-xs font-bold text-slate-700">
-            <a href="#cursos-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+            <a href="#cursos-v2" className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
               <GraduationCap className="w-4 h-4 text-blue-600" />
               <span>Cursos Aprende.org</span>
             </a>
-            <a href="#guias-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
-              <BookOpen className="w-4 h-4 text-emerald-600" />
+            <a href="#guias-v2" className={`flex items-center gap-1.5 hover:${theme.accentTextLight} transition-colors`}>
+              <BookOpen className={`w-4 h-4 ${theme.accentTextLight}`} />
               <span>Revista & Guías</span>
             </a>
-            <a href="#laboratorio-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+            <a href="#laboratorio-v2" className="flex items-center gap-1.5 hover:text-amber-600 transition-colors">
               <Calculator className="w-4 h-4 text-amber-500" />
               <span>Laboratorio Virtual</span>
             </a>
-            <a href="#faq-v2" className="flex items-center gap-1.5 hover:text-emerald-600 transition-colors">
+            <a href="#faq-v2" className="flex items-center gap-1.5 hover:text-slate-900 transition-colors">
               <HelpCircle className="w-4 h-4 text-slate-500" />
               <span>Preguntas</span>
             </a>
           </nav>
 
-          {/* Botón CTA Cotización */}
+          {/* Botón CTA Cotización con color de la paleta */}
           <div className="flex items-center gap-2">
             <button
               onClick={onOpenQuoteModal}
-              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
+              className={`px-4 py-2 ${theme.primaryButton} font-extrabold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5`}
             >
               <Sun className="w-3.5 h-3.5 fill-current" />
               <span className="hidden sm:inline">Cotizar con Brilla</span>

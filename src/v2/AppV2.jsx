@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import NavbarV2 from './components/NavbarV2';
+import ThemeSelectorV2 from './components/ThemeSelectorV2';
 import HeroV2 from './components/HeroV2';
 import CourseCatalogV2 from './components/CourseCatalogV2';
 import CourseModalV2 from './components/CourseModalV2';
@@ -11,11 +12,29 @@ import NewsletterCommunityV2 from './components/NewsletterCommunityV2';
 import ArticleModalV2 from './components/ArticleModalV2';
 import FooterV2 from './components/FooterV2';
 import ContactModal from '../components/ContactModal';
-import { v2Articles, v2Courses } from './data/v2Data';
+import { v2Articles } from './data/v2Data';
+import { colorThemes } from './theme/themeData';
 import { companyInfo } from '../data/energreenData';
 import { MessageCircle } from 'lucide-react';
 
 export default function AppV2({ onSwitchToV1 }) {
+  // Paleta de Color Activa (por defecto Caribe Solar)
+  const [currentThemeId, setCurrentThemeId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('energreen_theme') || 'caribe';
+    }
+    return 'caribe';
+  });
+
+  const theme = colorThemes[currentThemeId] || colorThemes.caribe;
+
+  const handleSelectTheme = (themeId) => {
+    setCurrentThemeId(themeId);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('energreen_theme', themeId);
+    }
+  };
+
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeArticleId, setActiveArticleId] = useState(null);
@@ -65,7 +84,7 @@ export default function AppV2({ onSwitchToV1 }) {
   }, [activeArticleId]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800 selection:bg-emerald-500 selection:text-white font-sans antialiased">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800 selection:bg-amber-400 selection:text-slate-950 font-sans antialiased transition-colors duration-300">
       
       {/* 1. Header & Top Bar con Buscador y Selector V1 */}
       <NavbarV2
@@ -75,47 +94,59 @@ export default function AppV2({ onSwitchToV1 }) {
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        theme={theme}
       />
 
-      {/* 2. Hero Editorial Tipo Tiendanube Blog (Portada + Lo Más Leído) */}
+      {/* 2. Barra Interactiva de Selección de Tonos de Color */}
+      <ThemeSelectorV2
+        currentThemeId={currentThemeId}
+        onSelectTheme={handleSelectTheme}
+      />
+
+      {/* 3. Hero Editorial Tipo Tiendanube Blog */}
       <HeroV2
         onOpenArticle={(id) => setActiveArticleId(id)}
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
+        theme={theme}
       />
 
-      {/* 3. Catálogo de Cursos y Oficios Abiertos Tipo Aprende.org */}
+      {/* 4. Catálogo de Cursos y Oficios Abiertos Tipo Aprende.org */}
       <CourseCatalogV2
         onSelectCourse={(course) => setSelectedCourse(course)}
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
+        theme={theme}
       />
 
-      {/* 4. Pastillas de Filtro de Revista */}
+      {/* 5. Pastillas de Filtro de Revista */}
       <CategoryPillsV2
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
         counts={counts}
+        theme={theme}
       />
 
-      {/* 5. Biblioteca de Guías y Artículos Magazine (Grid 3 columnas) */}
+      {/* 6. Biblioteca de Guías y Artículos Magazine (Grid 3 columnas) */}
       <FeaturedArticlesV2
         articles={filteredArticles}
         onOpenArticle={(id) => setActiveArticleId(id)}
         searchQuery={searchQuery}
         selectedCategory={selectedCategory}
+        theme={theme}
       />
 
-      {/* 6. Laboratorio Virtual de Prácticas y Glosario Solar Aprende.org */}
+      {/* 7. Laboratorio Virtual de Prácticas y Glosario Solar Aprende.org */}
       <InteractiveLabV2
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
+        theme={theme}
       />
 
-      {/* 7. Preguntas Frecuentes y Mitos en Córdoba */}
+      {/* 8. Preguntas Frecuentes y Mitos en Córdoba */}
       <FaqSectionV2 />
 
-      {/* 8. Boletín Informativo de la Comunidad Solar */}
+      {/* 9. Boletín Informativo de la Comunidad Solar */}
       <NewsletterCommunityV2 />
 
-      {/* 9. Pie de Página Institucional */}
+      {/* 10. Pie de Página Institucional */}
       <FooterV2 onSwitchToV1={onSwitchToV1} />
 
       {/* Modal Interactivo de Curso (Aprende.org) */}
@@ -127,6 +158,7 @@ export default function AppV2({ onSwitchToV1 }) {
           setSelectedCourse(null);
           setQuoteModalOpen(true);
         }}
+        theme={theme}
       />
 
       {/* Modal Lector de Artículos (Tiendanube Blog) */}
@@ -147,20 +179,12 @@ export default function AppV2({ onSwitchToV1 }) {
       />
 
       {/* Botón Flotante Amigable de WhatsApp */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
-        <div className="hidden md:flex items-center gap-2 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-xl border border-slate-200/80 text-xs font-semibold text-slate-800">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span>¿Dudas con tu factura Afinia? <strong>¡Escríbenos!</strong></span>
-        </div>
-
+      <div className="fixed bottom-20 sm:bottom-6 right-6 z-40 flex items-center gap-3">
         <a
           href={`https://wa.me/${companyInfo.contact.whatsapp}?text=Hola%20ENERGREEN,%20deseo%20asesoría%20sobre%20energía%20solar%20fotovoltaica`}
           target="_blank"
           rel="noreferrer"
-          className="relative p-4 bg-gradient-to-tr from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-500 text-white rounded-full shadow-2xl shadow-emerald-600/40 hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+          className="relative p-4 bg-gradient-to-tr from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-full shadow-2xl shadow-emerald-600/40 hover:scale-110 transition-all duration-300 flex items-center justify-center group"
           aria-label="Hablar por WhatsApp con un asesor de EnerGreen"
         >
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-amber-400 rounded-full border-2 border-white flex items-center justify-center">
