@@ -13,25 +13,41 @@ import ArticleModalV2 from './components/ArticleModalV2';
 import FooterV2 from './components/FooterV2';
 import ContactModal from '../components/ContactModal';
 import { v2Articles } from './data/v2Data';
-import { colorThemes } from './theme/themeData';
+import { colorThemes, greenBackgrounds } from './theme/themeData';
 import { companyInfo } from '../data/energreenData';
 import { MessageCircle } from 'lucide-react';
 
 export default function AppV2({ onSwitchToV1 }) {
-  // Paleta de Color Activa (por defecto Caribe Solar)
+  // Paleta seleccionada: 'eco' (Eco Sinú & Campo) por defecto
   const [currentThemeId, setCurrentThemeId] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('energreen_theme') || 'caribe';
+      return localStorage.getItem('energreen_theme') || 'eco';
     }
-    return 'caribe';
+    return 'eco';
   });
 
-  const theme = colorThemes[currentThemeId] || colorThemes.caribe;
+  // Tono de Fondo Verde (sin fondo blanco): 'salvia' por defecto
+  const [currentBgId, setCurrentBgId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('energreen_v2_bg') || 'salvia';
+    }
+    return 'salvia';
+  });
+
+  const theme = colorThemes[currentThemeId] || colorThemes.eco;
+  const bgStyle = greenBackgrounds[currentBgId] || greenBackgrounds.salvia;
 
   const handleSelectTheme = (themeId) => {
     setCurrentThemeId(themeId);
     if (typeof window !== 'undefined') {
       localStorage.setItem('energreen_theme', themeId);
+    }
+  };
+
+  const handleSelectBg = (bgId) => {
+    setCurrentBgId(bgId);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('energreen_v2_bg', bgId);
     }
   };
 
@@ -84,7 +100,7 @@ export default function AppV2({ onSwitchToV1 }) {
   }, [activeArticleId]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800 selection:bg-amber-400 selection:text-slate-950 font-sans antialiased transition-colors duration-300">
+    <div className={`min-h-screen flex flex-col ${bgStyle.pageBg} text-slate-800 selection:bg-amber-400 selection:text-slate-950 font-sans antialiased transition-colors duration-500`}>
       
       {/* 1. Header & Top Bar con Buscador y Selector V1 */}
       <NavbarV2
@@ -97,8 +113,10 @@ export default function AppV2({ onSwitchToV1 }) {
         theme={theme}
       />
 
-      {/* 2. Barra Interactiva de Selección de Tonos de Color */}
+      {/* 2. Barra Interactiva de Selección de Tonos de Fondo Verde */}
       <ThemeSelectorV2
+        currentBgId={currentBgId}
+        onSelectBg={handleSelectBg}
         currentThemeId={currentThemeId}
         onSelectTheme={handleSelectTheme}
       />
@@ -108,6 +126,7 @@ export default function AppV2({ onSwitchToV1 }) {
         onOpenArticle={(id) => setActiveArticleId(id)}
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* 4. Catálogo de Cursos y Oficios Abiertos Tipo Aprende.org */}
@@ -115,6 +134,7 @@ export default function AppV2({ onSwitchToV1 }) {
         onSelectCourse={(course) => setSelectedCourse(course)}
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* 5. Pastillas de Filtro de Revista */}
@@ -123,6 +143,7 @@ export default function AppV2({ onSwitchToV1 }) {
         onSelectCategory={setSelectedCategory}
         counts={counts}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* 6. Biblioteca de Guías y Artículos Magazine (Grid 3 columnas) */}
@@ -132,16 +153,21 @@ export default function AppV2({ onSwitchToV1 }) {
         searchQuery={searchQuery}
         selectedCategory={selectedCategory}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* 7. Laboratorio Virtual de Prácticas y Glosario Solar Aprende.org */}
       <InteractiveLabV2
         onOpenQuoteModal={() => setQuoteModalOpen(true)}
         theme={theme}
+        bgStyle={bgStyle}
       />
 
       {/* 8. Preguntas Frecuentes y Mitos en Córdoba */}
-      <FaqSectionV2 />
+      <FaqSectionV2
+        theme={theme}
+        bgStyle={bgStyle}
+      />
 
       {/* 9. Boletín Informativo de la Comunidad Solar */}
       <NewsletterCommunityV2 />
@@ -181,7 +207,7 @@ export default function AppV2({ onSwitchToV1 }) {
       {/* Botón Flotante Amigable de WhatsApp */}
       <div className="fixed bottom-20 sm:bottom-6 right-6 z-40 flex items-center gap-3">
         <a
-          href={`https://wa.me/${companyInfo.contact.whatsapp}?text=Hola%20ENERGREEN,%20deseo%20asesoría%20sobre%20energía%20solar%20fotovoltaica`}
+          href={`https://wa.me/${companyInfo.contact.whatsapp}?text=Hola%20ENERGREEN,%20deseo%20asesor%C3%ADa%20sobre%20energ%C3%ADa%20solar%20fotovoltaica`}
           target="_blank"
           rel="noreferrer"
           className="relative p-4 bg-gradient-to-tr from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white rounded-full shadow-2xl shadow-emerald-600/40 hover:scale-110 transition-all duration-300 flex items-center justify-center group"

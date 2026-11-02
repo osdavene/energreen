@@ -3,11 +3,6 @@ import {
   BookOpen, 
   Clock, 
   ArrowRight, 
-  Tag, 
-  User, 
-  CheckCircle2, 
-  Calendar, 
-  Sparkles, 
   FileQuestion 
 } from 'lucide-react';
 
@@ -16,25 +11,30 @@ export default function FeaturedArticlesV2({
   onOpenArticle, 
   searchQuery, 
   selectedCategory,
-  theme
+  theme,
+  bgStyle
 }) {
+  const textTitle = bgStyle?.isDark ? 'text-white' : 'text-slate-900';
+  const textBody = bgStyle?.isDark ? 'text-emerald-100/90' : 'text-slate-600';
+  const textMuted = bgStyle?.isDark ? 'text-emerald-200/60' : 'text-slate-500';
+
   return (
-    <section id="guias-v2" className="py-16 md:py-20 bg-white">
+    <section id="guias-v2" className={`py-16 md:py-20 ${bgStyle?.pageBg || 'bg-[#eef7f2]'} transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera Tipo Tiendanube Blog */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-4 border-b border-slate-100">
+        <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 pb-4 border-b ${bgStyle?.sectionBorder || 'border-slate-100'}`}>
           <div>
             <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${theme.badge} text-[11px] font-black uppercase tracking-wider mb-2`}>
               <BookOpen className="w-3.5 h-3.5" />
               <span>Biblioteca de Guías & Artículos Prácticos</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black font-display text-slate-900 tracking-tight">
+            <h2 className={`text-2xl sm:text-3xl font-black font-display tracking-tight ${textTitle}`}>
               Aprende con nuestras guías técnicas y casos reales
             </h2>
           </div>
 
-          <div className="text-xs text-slate-500 font-semibold">
+          <div className={`text-xs ${textMuted} font-semibold`}>
             Mostrando <strong>{articles.length}</strong> {articles.length === 1 ? 'guía' : 'guías'}
             {searchQuery && <span> para "{searchQuery}"</span>}
           </div>
@@ -42,10 +42,10 @@ export default function FeaturedArticlesV2({
 
         {/* Estado Vacío si no hay resultados */}
         {articles.length === 0 && (
-          <div className="text-center py-16 bg-slate-50 rounded-3xl border border-slate-200">
+          <div className={`text-center py-16 ${bgStyle?.cardBg || 'bg-white'} rounded-3xl border ${bgStyle?.cardBorder || 'border-slate-200'}`}>
             <FileQuestion className="w-12 h-12 text-slate-400 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-slate-900">No encontramos guías con ese término</h3>
-            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+            <h3 className={`text-lg font-bold ${textTitle}`}>No encontramos guías con ese término</h3>
+            <p className={`text-xs ${textMuted} mt-1 max-w-sm mx-auto`}>
               Intenta buscar por palabras clave como "bombeo", "hogar", "recibo", "Brilla" o "RETIE".
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function FeaturedArticlesV2({
             <article
               key={art.id}
               onClick={() => onOpenArticle(art.id)}
-              className={`bg-white rounded-3xl border border-slate-200 ${theme.cardBorderHover} shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer group hover:-translate-y-1`}
+              className={`${bgStyle?.cardBg || 'bg-white'} rounded-3xl border ${bgStyle?.cardBorder || 'border-slate-200'} ${theme.cardBorderHover} ${bgStyle?.cardShadow || 'shadow-xs'} hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer group hover:-translate-y-1`}
             >
               <div>
                 {/* Imagen del Artículo con Badge */}
@@ -81,31 +81,31 @@ export default function FeaturedArticlesV2({
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {art.tags.slice(0, 3).map((tag, tIdx) => (
-                      <span key={tIdx} className={`text-[10px] font-bold ${theme.accentText} ${theme.accentBgLight} px-2 py-0.5 rounded-md`}>
+                      <span key={tIdx} className={`text-[10px] font-bold ${theme.accentText} ${theme.accentBgLight} px-2 py-0.5 rounded-md border ${theme.accentBorderLight}`}>
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <h3 className={`text-lg font-display font-black text-slate-900 leading-snug mb-2 group-hover:${theme.accentText} transition-colors line-clamp-2`}>
+                  <h3 className={`text-lg font-display font-black leading-snug mb-2 ${textTitle} group-hover:${theme.accentText} transition-colors line-clamp-2`}>
                     {art.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4">
+                  <p className={`text-xs leading-relaxed line-clamp-3 mb-4 ${textBody}`}>
                     {art.excerpt}
                   </p>
                 </div>
               </div>
 
               {/* Pie del Card: Autor y Enlace */}
-              <div className="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <div className={`px-6 pb-6 pt-3 border-t ${bgStyle?.cardBorder || 'border-slate-100'} flex items-center justify-between`}>
                 <div className="flex items-center gap-2">
                   <div className="w-7 h-7 rounded-full bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center">
                     {art.author.avatar}
                   </div>
                   <div>
-                    <p className="text-[11px] font-bold text-slate-800 line-clamp-1">{art.author.name}</p>
-                    <p className="text-[9px] text-slate-400">{art.date}</p>
+                    <p className={`text-[11px] font-bold line-clamp-1 ${textTitle}`}>{art.author.name}</p>
+                    <p className={`text-[9px] ${textMuted}`}>{art.date}</p>
                   </div>
                 </div>
 

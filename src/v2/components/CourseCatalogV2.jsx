@@ -2,21 +2,20 @@ import React from 'react';
 import { 
   GraduationCap, 
   BookOpen, 
-  PlayCircle, 
-  CheckCircle, 
   Award, 
   Clock, 
   ArrowRight, 
-  Sparkles,
-  Users,
-  ShieldCheck,
   ChevronRight
 } from 'lucide-react';
 import { v2Courses } from '../data/v2Data';
 
-export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, theme }) {
+export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, theme, bgStyle }) {
+  const textTitle = bgStyle?.isDark ? 'text-white' : 'text-slate-900';
+  const textBody = bgStyle?.isDark ? 'text-emerald-100/90' : 'text-slate-600';
+  const textMuted = bgStyle?.isDark ? 'text-emerald-200/60' : 'text-slate-500';
+
   return (
-    <section id="cursos-v2" className="py-16 md:py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-y border-slate-200">
+    <section id="cursos-v2" className={`py-16 md:py-24 border-y ${bgStyle?.sectionBorder || 'border-slate-200'} ${bgStyle?.sectionMuted || 'bg-slate-50'} transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabecera Aprende.org Style */}
@@ -26,24 +25,24 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, them
               <GraduationCap className="w-4 h-4" />
               <span>Plataforma de Formación • Estilo Aprende.org</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black font-display text-slate-900 tracking-tight">
+            <h2 className={`text-3xl sm:text-4xl font-black font-display tracking-tight ${textTitle}`}>
               Capacítate en Energía Solar: <br className="hidden sm:inline" />
               <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme.gradientText}`}>
                 Cursos Abiertos y Oficios Técnicos
               </span>
             </h2>
-            <p className="mt-3 text-slate-600 text-xs sm:text-sm leading-relaxed">
+            <p className={`mt-3 text-xs sm:text-sm leading-relaxed ${textBody}`}>
               Programas pedagógicos modulares diseñados por técnicos electrónicos del <strong>SENA Montería</strong> para empoderar a familias, técnicos e instaladores del departamento de Córdoba.
             </p>
           </div>
 
-          <div className="flex items-center gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm shrink-0">
+          <div className={`flex items-center gap-3 ${bgStyle?.cardBg || 'bg-white'} p-4 rounded-2xl border ${bgStyle?.cardBorder || 'border-slate-200'} ${bgStyle?.cardShadow || 'shadow-sm'} shrink-0`}>
             <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-black">
               <Award className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-900">100% Acceso Gratuito</p>
-              <p className="text-[11px] text-slate-500">Con aval formativo SENA (Ficha 3065832)</p>
+              <p className={`text-xs font-bold ${textTitle}`}>100% Acceso Gratuito</p>
+              <p className={`text-[11px] ${textMuted}`}>Con aval formativo SENA (Ficha 3065832)</p>
             </div>
           </div>
         </div>
@@ -53,7 +52,7 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, them
           {v2Courses.map((course) => (
             <div
               key={course.id}
-              className={`bg-white rounded-3xl border border-slate-200 ${theme.cardBorderHover} shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5`}
+              className={`${bgStyle?.cardBg || 'bg-white'} rounded-3xl border ${bgStyle?.cardBorder || 'border-slate-200'} ${theme.cardBorderHover} ${bgStyle?.cardShadow || 'shadow-sm'} hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1.5`}
             >
               <div>
                 {/* Portada del Curso */}
@@ -76,24 +75,24 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, them
 
                 {/* Contenido del Card */}
                 <div className="p-5 space-y-3">
-                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400">
+                  <div className={`flex items-center gap-1.5 text-[11px] font-bold ${textMuted}`}>
                     <span className={`w-2 h-2 rounded-full ${theme.accentDot}`}></span>
                     <span>{course.level}</span>
                   </div>
 
-                  <h3 className={`text-base font-black font-display text-slate-900 leading-snug group-hover:${theme.accentText} transition-colors line-clamp-2`}>
+                  <h3 className={`text-base font-black font-display leading-snug ${textTitle} group-hover:${theme.accentText} transition-colors line-clamp-2`}>
                     {course.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                  <p className={`text-xs line-clamp-3 leading-relaxed ${textBody}`}>
                     {course.shortDesc}
                   </p>
                 </div>
               </div>
 
               {/* Pie del Card con Botón de Temario */}
-              <div className="p-5 pt-3 border-t border-slate-100 bg-slate-50/50 space-y-3">
-                <div className="text-[11px] text-slate-500 font-medium">
+              <div className={`p-5 pt-3 border-t ${bgStyle?.cardBorder || 'border-slate-100'} ${bgStyle?.cardBgAlt || 'bg-slate-50/50'} space-y-3`}>
+                <div className={`text-[11px] ${textMuted} font-medium`}>
                   Instructor: <strong>{course.instructor.split('(')[0]}</strong>
                 </div>
 
@@ -111,16 +110,16 @@ export default function CourseCatalogV2({ onSelectCourse, onOpenQuoteModal, them
         </div>
 
         {/* Fila Informativa de Certificación SENA */}
-        <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className={`mt-12 ${bgStyle?.cardBg || 'bg-white'} rounded-3xl p-6 sm:p-8 border ${bgStyle?.cardBorder || 'border-slate-200'} ${bgStyle?.cardShadow || 'shadow-md'} flex flex-col md:flex-row items-center justify-between gap-6`}>
           <div className="flex items-center gap-4">
             <div className={`w-14 h-14 rounded-2xl ${theme.accentBgLight} ${theme.accentText} border ${theme.accentBorderLight} flex items-center justify-center shrink-0 shadow-md`}>
               <Award className="w-8 h-8" />
             </div>
             <div>
-              <h4 className="text-base font-bold text-slate-900">
+              <h4 className={`text-base font-bold ${textTitle}`}>
                 ¿Deseas homologar tus conocimientos con certificación oficial SENA?
               </h4>
-              <p className="text-xs text-slate-600">
+              <p className={`text-xs ${textBody}`}>
                 EnerGreen apoya la vinculación laboral de jóvenes egresados del Centro de Comercio, Industria y Turismo de Córdoba (Ficha 3065832).
               </p>
             </div>

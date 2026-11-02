@@ -1,68 +1,75 @@
 import React from 'react';
-import { Palette, Sparkles, Check } from 'lucide-react';
-import { colorThemes } from '../theme/themeData';
+import { Palette, Sparkles, Check, Droplets } from 'lucide-react';
+import { greenBackgrounds, colorThemes } from '../theme/themeData';
 
-export default function ThemeSelectorV2({ currentThemeId, onSelectTheme }) {
+export default function ThemeSelectorV2({ 
+  currentBgId, 
+  onSelectBg,
+  currentThemeId, 
+  onSelectTheme 
+}) {
+  const bgList = Object.values(greenBackgrounds);
   const themesList = Object.values(colorThemes);
 
-  const getDots = (themeId) => {
-    switch (themeId) {
-      case 'nordic':
-        return ['#2563EB', '#6366F1', '#06B6D4'];
-      case 'eco':
-        return ['#0F766E', '#059669', '#D97706'];
-      case 'editorial':
-        return ['#18181B', '#4F46E5', '#F59E0B'];
-      default: // caribe
-        return ['#059669', '#0D9488', '#F59E0B'];
+  const getBgPreviewColor = (bgId) => {
+    switch (bgId) {
+      case 'sinu':
+        return 'linear-gradient(135deg, #e3f2ea 0%, #edf7f2 50%, #d6ede0 100%)';
+      case 'oliva':
+        return '#eef4eb';
+      case 'bosque':
+        return '#06241c';
+      default: // salvia
+        return '#eef7f2';
     }
   };
 
   return (
-    <div className="bg-slate-50 border-b border-slate-200 py-2.5 px-4 sticky top-[69px] z-30 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
+    <div className="bg-white/80 backdrop-blur-md border-b border-emerald-200/60 py-3 px-4 sticky top-[69px] z-30 shadow-xs">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
         
-        {/* Etiqueta didáctica */}
-        <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-          <div className="w-6 h-6 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-800 shadow-xs">
-            <Palette className="w-3.5 h-3.5 text-slate-900" />
+        {/* Título del Selector de Fondo Verde */}
+        <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
+          <div className="w-7 h-7 rounded-xl bg-teal-100 border border-teal-300 flex items-center justify-center text-teal-800 shadow-xs">
+            <Droplets className="w-4 h-4 text-teal-700" />
           </div>
-          <span className="text-[11px] uppercase tracking-wider text-slate-500 font-extrabold">
-            Explora Tonos y Colores en Vivo:
-          </span>
+          <div>
+            <span className="text-[11px] font-black uppercase tracking-wider text-teal-900 block">
+              🌿 Elige tu Tono de Fondo Verde:
+            </span>
+            <span className="text-[10px] text-slate-500 font-medium hidden sm:inline">
+              Fondo blanco reemplazado por tonos ecológicos de Córdoba
+            </span>
+          </div>
         </div>
 
-        {/* Botones de las 4 Paletas */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 max-w-full">
-          {themesList.map((t) => {
-            const isSelected = currentThemeId === t.id;
-            const dots = getDots(t.id);
+        {/* Botones de las 4 Opciones de Fondo Verde */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 max-w-full">
+          {bgList.map((bg) => {
+            const isSelected = currentBgId === bg.id;
+            const bgPreview = getBgPreviewColor(bg.id);
 
             return (
               <button
-                key={t.id}
-                onClick={() => onSelectTheme(t.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shrink-0 border ${
+                key={bg.id}
+                onClick={() => onSelectBg(bg.id)}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shrink-0 border ${
                   isSelected
-                    ? 'bg-slate-950 text-white border-slate-900 shadow-md ring-2 ring-slate-950/20'
-                    : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-100/80'
+                    ? 'bg-slate-950 text-white border-slate-900 shadow-md ring-2 ring-teal-500/30 scale-105'
+                    : 'bg-white text-slate-700 border-emerald-200 hover:border-emerald-300 hover:bg-emerald-50/50'
                 }`}
+                title={bg.desc}
               >
-                {/* Indicador de 3 puntos de color */}
-                <div className="flex items-center -space-x-1">
-                  {dots.map((d, dIdx) => (
-                    <span
-                      key={dIdx}
-                      className="w-2.5 h-2.5 rounded-full border border-white"
-                      style={{ backgroundColor: d }}
-                    ></span>
-                  ))}
-                </div>
+                {/* Muestra circular con el color del fondo */}
+                <span
+                  className="w-3.5 h-3.5 rounded-full border border-black/20 shrink-0 shadow-xs"
+                  style={{ background: bgPreview }}
+                ></span>
 
-                <span className="text-[11px]">{t.name}</span>
+                <span className="text-[11px] font-extrabold">{bg.name}</span>
 
                 {isSelected && (
-                  <Check className="w-3 h-3 text-amber-400 shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 )}
               </button>
             );

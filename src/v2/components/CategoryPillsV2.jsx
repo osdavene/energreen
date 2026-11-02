@@ -8,7 +8,7 @@ import {
   GraduationCap 
 } from 'lucide-react';
 
-export default function CategoryPillsV2({ selectedCategory, onSelectCategory, counts, theme }) {
+export default function CategoryPillsV2({ selectedCategory, onSelectCategory, counts, theme, bgStyle }) {
   const categories = [
     { 
       id: 'all', 
@@ -55,7 +55,7 @@ export default function CategoryPillsV2({ selectedCategory, onSelectCategory, co
   ];
 
   return (
-    <div className="py-3.5 bg-white border-b border-slate-200 sticky top-[113px] z-20 shadow-xs">
+    <div className={`py-3.5 ${bgStyle?.headerBg || 'bg-white'} backdrop-blur-md border-b ${bgStyle?.sectionBorder || 'border-slate-200'} sticky top-[125px] z-20 shadow-xs transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5">
           <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider shrink-0 mr-1 hidden sm:inline">
@@ -70,7 +70,7 @@ export default function CategoryPillsV2({ selectedCategory, onSelectCategory, co
                 className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shrink-0 flex items-center gap-1.5 border ${
                   isSelected
                     ? `${cat.activeClass} shadow-md scale-105`
-                    : `bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 ${cat.colorClass}`
+                    : `${bgStyle?.pillBg || 'bg-white'} text-slate-700 ${bgStyle?.cardBorder || 'border-slate-200'} hover:bg-emerald-50/50 ${cat.colorClass}`
                 }`}
               >
                 <span>{cat.label}</span>
