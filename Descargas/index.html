@@ -4,167 +4,498 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Centro de Descargas • EnerGreen</title>
-  <link rel="icon" type="image/svg+xml" href="/vite.svg">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    /* Estilos 100% Autónomos (Sin dependencias de CDN externos) */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #06241c;
+      color: #ecfdf5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      line-height: 1.5;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Cabecera */
+    header {
+      background: rgba(3, 24, 18, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #155442;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #10b981, #14b8a6, #f59e0b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .logo-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+    .logo-title span {
+      color: #34d399;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: #6ee7b7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      display: block;
+    }
+    .btn-back {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6ee7b7;
+      background: #0b352a;
+      border: 1px solid #155442;
+      padding: 8px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+    .btn-back:hover {
+      background: #104838;
+      color: #ffffff;
+      border-color: #34d399;
+    }
+
+    /* Contenido */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+      width: 100%;
+    }
+    .hero-text {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 36px;
+    }
+    .badge-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #6ee7b7;
+      background: rgba(6, 78, 59, 0.8);
+      border: 1px solid #155442;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: #a7f3d0;
+      opacity: 0.85;
+    }
+
+    /* Tarjeta de Descarga */
+    .card-download {
+      background: #0c372b;
+      border: 1px solid #155442;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s ease, transform 0.2s ease;
+      margin-bottom: 24px;
+    }
+    .card-download:hover {
+      border-color: #34d399;
+    }
+    .card-top {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .card-top {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .file-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #059669, #0d9488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+    .file-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .tag-apk {
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .file-size {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fbbf24;
+    }
+    .file-version {
+      font-size: 12px;
+      color: rgba(110, 231, 183, 0.6);
+    }
+    .file-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .file-desc {
+      font-size: 13px;
+      color: #a7f3d0;
+      opacity: 0.8;
+      max-width: 500px;
+    }
+
+    /* Botones de Acción */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    @media (min-width: 540px) {
+      .action-group {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #10b981, #14b8a6);
+      color: #031812;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 14px 28px;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-download:hover {
+      background: linear-gradient(135deg, #34d399, #2dd4bf);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(16, 185, 129, 0.45);
+    }
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #082a21;
+      color: #6ee7b7;
+      border: 1px solid #155442;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-copy:hover {
+      background: #104838;
+      color: #ffffff;
+      border-color: #34d399;
+    }
+
+    /* Sección de Guía Smart TV y QR */
+    .card-footer {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #155442;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .card-footer {
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+      }
+    }
+    .tv-guide h3 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tv-guide ol {
+      padding-left: 20px;
+      font-size: 12px;
+      color: #a7f3d0;
+      opacity: 0.9;
+    }
+    .tv-guide li {
+      margin-bottom: 4px;
+    }
+    .short-link {
+      background: #082a21;
+      border: 1px solid #155442;
+      padding: 2px 8px;
+      border-radius: 6px;
+      color: #fbbf24;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .qr-box {
+      background: #082a21;
+      border: 1px solid #155442;
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .qr-img {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+    .qr-text p:first-child {
+      font-size: 12px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .qr-text p:last-child {
+      font-size: 11px;
+      color: rgba(110, 231, 183, 0.7);
+    }
+
+    /* Caja informativa */
+    .info-box {
+      background: #082a21;
+      border: 1px solid #155442;
+      border-radius: 16px;
+      padding: 20px;
+      font-size: 12px;
+      color: rgba(167, 243, 208, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .info-box {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .info-box strong {
+      color: #ffffff;
+    }
+
+    /* Pie de página */
+    footer {
+      border-top: 1px solid #155442;
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(110, 231, 183, 0.5);
+      background: #031812;
+    }
   </style>
 </head>
-<body class="bg-[#06241c] text-white min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950 antialiased">
+<body>
 
   <!-- Cabecera -->
-  <header class="border-b border-[#155442] bg-[#031812]/90 backdrop-blur-md sticky top-0 z-20">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-amber-400 flex items-center justify-center p-0.5 shadow-md">
-          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-            <span class="text-amber-400 text-lg">⚡</span>
-          </div>
-        </div>
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo-box">
+        <div class="logo-icon">⚡</div>
         <div>
-          <span class="font-black text-xl tracking-tight text-white leading-none block">
-            ENER<span class="text-emerald-400">GREEN</span>
-          </span>
-          <span class="text-[10px] text-emerald-300/70 font-semibold uppercase tracking-wider">
-            Centro de Descargas Privado
-          </span>
+          <span class="logo-title">ENER<span>GREEN</span></span>
+          <span class="logo-sub">Centro de Descargas</span>
         </div>
       </a>
 
-      <a href="/" class="text-xs font-bold text-emerald-300 hover:text-white bg-[#0b352a] hover:bg-[#104838] border border-[#155442] px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
-        <span>← Volver a EnerGreen</span>
-      </a>
+      <a href="/" class="btn-back">← Volver a la Web Principal</a>
     </div>
   </header>
 
   <!-- Contenido Principal -->
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+  <main>
     
-    <div class="mb-8 text-center max-w-2xl mx-auto">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-[#155442] text-emerald-300 text-[11px] font-black uppercase tracking-wider mb-3">
-        📁 Repositorio de Archivos
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white">
-        Archivos Disponibles para Descarga
-      </h1>
-      <p class="mt-2 text-xs sm:text-sm text-emerald-200/70">
-        Descarga directa a alta velocidad desde nuestro servidor en la nube AWS. Compatible con Smart TV, TV Box, Android TV, celulares y PC.
+    <div class="hero-text">
+      <span class="badge-pill">📁 Repositorio de Archivos Oficial</span>
+      <h1 class="hero-title">Archivos Disponibles para Descarga</h1>
+      <p class="hero-sub">
+        Descarga directa a máxima velocidad alojada en nuestro servidor cloud AWS. Compatible con Smart TV, TV Box, Android TV, celulares y computadores.
       </p>
     </div>
 
-    <!-- Lista de Archivos -->
-    <div class="space-y-4">
+    <!-- Tarjeta APK: Xuper Premium -->
+    <div class="card-download">
+      <div class="card-top">
+        
+        <div class="file-info">
+          <div class="file-icon">🤖</div>
 
-      <!-- Tarjeta APK: Xuper Premium -->
-      <div class="bg-[#0c372b] border border-[#155442] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group hover:border-emerald-400 transition-all duration-300">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          
-          <div class="flex items-start sm:items-center gap-4">
-            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shrink-0 shadow-lg text-2xl font-black">
-              🤖
+          <div>
+            <div class="file-meta">
+              <span class="tag-apk">Android APK • Smart TV</span>
+              <span class="file-size">58.04 MB</span>
+              <span class="file-version">• Versión 5.0.9</span>
             </div>
 
-            <div class="space-y-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  Android APK • Para TV
-                </span>
-                <span class="text-xs text-amber-400 font-bold">58.04 MB</span>
-                <span class="text-xs text-emerald-300/50">• v5.0.9</span>
-              </div>
-
-              <h2 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                Xuper Premium 5.0.9 para TV
-              </h2>
-
-              <p class="text-xs text-emerald-100/70 max-w-xl leading-relaxed">
-                Archivo instalador (.apk) optimizado para Android TV, Google TV, Fire TV Stick, TV Box y smartphones.
-              </p>
-            </div>
+            <h2 class="file-name">Xuper Premium 5.0.9 para TV</h2>
+            <p class="file-desc">
+              Aplicación oficial en formato .apk lista para instalar en Android TV, Google TV, Amazon Firestick y smartphones.
+            </p>
           </div>
-
-          <!-- Acciones de Descarga -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
-            <a
-              href="/descargas/xuper.apk"
-              download="Xuper_Premium_5.0.9_TV.apk"
-              class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all transform hover:scale-105"
-            >
-              <span>⬇️ Descargar APK</span>
-            </a>
-
-            <button
-              onclick="copyToClipboard('https://energreen.servigest.online/descargas/xuper.apk')"
-              class="px-4 py-3 bg-[#082a21] hover:bg-[#0f4435] border border-[#155442] text-emerald-300 hover:text-white text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5"
-              title="Copiar enlace directo"
-            >
-              <span>📋 Copiar Enlace</span>
-            </button>
-          </div>
-
         </div>
 
-        <!-- Fila Didáctica con Enlace Corto y Código QR -->
-        <div class="mt-6 pt-6 border-t border-[#155442] grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-          
-          <div class="md:col-span-8 space-y-2 text-xs">
-            <p class="font-bold text-white flex items-center gap-1.5">
-              <span>📺 ¿Cómo instalarlo en tu Smart TV o TV Box?</span>
-            </p>
-            <ol class="list-decimal pl-5 space-y-1 text-emerald-100/80">
-              <li>Abre la app <strong>Downloader</strong> o el navegador en tu Smart TV / Firestick.</li>
-              <li>Escribe este enlace corto directo:
-                <code class="bg-[#082a21] px-2 py-0.5 rounded text-amber-300 font-mono select-all ml-1 border border-[#155442]">
-                  energreen.servigest.online/descargas/xuper.apk
-                </code>
-              </li>
-              <li>¡Listo! La descarga e instalación iniciará automáticamente.</li>
-            </ol>
-          </div>
+        <!-- Botones de Acción -->
+        <div class="action-group">
+          <a
+            href="/descargas/xuper.apk"
+            download="Xuper_Premium_5.0.9_TV.apk"
+            class="btn-download"
+          >
+            <span>⬇️ Descargar APK</span>
+          </a>
 
-          <!-- Código QR para escanear con el teléfono -->
-          <div class="md:col-span-4 flex items-center md:justify-end gap-3 bg-[#082a21] p-3 rounded-2xl border border-[#155442]">
-            <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://energreen.servigest.online/descargas/xuper.apk"
-              alt="Código QR de Descarga"
-              class="w-16 h-16 rounded-xl bg-white p-1 shrink-0 shadow-md"
-            />
-            <div class="text-[11px] text-emerald-100/80">
-              <p class="font-bold text-white">Escanea con tu celular</p>
-              <p class="text-[10px] text-emerald-300/60">Apunta la cámara para descargar directo</p>
-            </div>
-          </div>
+          <button
+            onclick="copyLink('https://energreen.servigest.online/descargas/xuper.apk')"
+            class="btn-copy"
+            title="Copiar enlace directo"
+          >
+            <span>📋 Copiar Enlace</span>
+          </button>
+        </div>
 
+      </div>
+
+      <!-- Fila de Guía TV y Código QR -->
+      <div class="card-footer">
+        
+        <div class="tv-guide">
+          <h3>📺 ¿Cómo instalar en tu Smart TV o TV Box?</h3>
+          <ol>
+            <li>Abre la aplicación <strong>Downloader</strong> o el navegador en tu Smart TV.</li>
+            <li>Escribe este enlace corto directo: <span class="short-link">energreen.servigest.online/descargas/xuper.apk</span></li>
+            <li>Inicia la descarga y pulsa <strong>Instalar</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="qr-box">
+          <img 
+            src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://energreen.servigest.online/descargas/xuper.apk"
+            alt="Código QR de Descarga"
+            class="qr-img"
+          />
+          <div class="qr-text">
+            <p>Escanear con Celular</p>
+            <p>Apunta con la cámara para descargar de inmediato</p>
+          </div>
         </div>
 
       </div>
 
     </div>
 
-    <!-- Instrucciones de subida -->
-    <div class="mt-8 bg-[#082a21] border border-[#155442] rounded-2xl p-5 text-xs text-emerald-200/70 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="space-y-0.5">
-        <p class="font-bold text-white">💡 Para subir más archivos en el futuro:</p>
-        <p>Copia tus archivos a la carpeta <code class="text-amber-300 font-mono">Descargas/</code> en tu computadora y avísame para sincronizarlos al instante a tu servidor AWS.</p>
+    <!-- Tarjeta Informativa de Subidas -->
+    <div class="info-box">
+      <div>
+        <p><strong>💡 Para agregar más archivos en el futuro:</strong></p>
+        <p>Pega tus archivos en la carpeta local <span class="short-link">Descargas/</span> y ejecutas <span class="short-link">.\subir-descargas.ps1</span> para que se publiquen automáticamente en este portal.</p>
       </div>
-      <a href="/" class="text-emerald-400 hover:underline font-bold shrink-0">Ir a la web principal →</a>
+      <a href="/" style="color: #34d399; font-weight: 800; text-decoration: underline;">Ir a la web principal →</a>
     </div>
 
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-[#155442] py-6 text-center text-xs text-emerald-300/50 bg-[#031812]">
-    <p>© 2026 ENERGREEN S.A.S. • Servidor AWS en Ohio (18.191.199.104) • energreen.servigest.online</p>
+  <footer>
+    <p>© 2026 ENERGREEN S.A.S. • Alojado en AWS EC2 (18.191.199.104) • energreen.servigest.online</p>
   </footer>
 
   <script>
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('✅ ¡Enlace copiado al portapapeles!\n' + text);
-      }).catch(() => {
-        prompt('Copia este enlace:', text);
-      });
+    function copyLink(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+          alert('✅ ¡Enlace copiado al portapapeles!\n\n' + text);
+        }).catch(function() {
+          prompt('Copia este enlace directo:', text);
+        });
+      } else {
+        prompt('Copia este enlace directo:', text);
+      }
     }
   </script>
 
