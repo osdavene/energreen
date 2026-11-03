@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Archivos pesados de descargas (para no sobrecargar el repositorio Git)
+Descargas/*.apk
+*.apk
+Descargas/*.zip
+Descargas/*.iso
+Descargas/*.mp4
+Descargas/*.tar.gz

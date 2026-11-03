@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Descargas • EnerGreen</title>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#06241c] text-white min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950 antialiased">
+
+  <!-- Cabecera -->
+  <header class="border-b border-[#155442] bg-[#031812]/90 backdrop-blur-md sticky top-0 z-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-amber-400 flex items-center justify-center p-0.5 shadow-md">
+          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+            <span class="text-amber-400 text-lg">⚡</span>
+          </div>
+        </div>
+        <div>
+          <span class="font-black text-xl tracking-tight text-white leading-none block">
+            ENER<span class="text-emerald-400">GREEN</span>
+          </span>
+          <span class="text-[10px] text-emerald-300/70 font-semibold uppercase tracking-wider">
+            Centro de Descargas Privado
+          </span>
+        </div>
+      </a>
+
+      <a href="/" class="text-xs font-bold text-emerald-300 hover:text-white bg-[#0b352a] hover:bg-[#104838] border border-[#155442] px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
+        <span>← Volver a EnerGreen</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+    
+    <div class="mb-8 text-center max-w-2xl mx-auto">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 border border-[#155442] text-emerald-300 text-[11px] font-black uppercase tracking-wider mb-3">
+        📁 Repositorio de Archivos
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white">
+        Archivos Disponibles para Descarga
+      </h1>
+      <p class="mt-2 text-xs sm:text-sm text-emerald-200/70">
+        Descarga directa a alta velocidad desde nuestro servidor en la nube AWS. Compatible con Smart TV, TV Box, Android TV, celulares y PC.
+      </p>
+    </div>
+
+    <!-- Lista de Archivos -->
+    <div class="space-y-4">
+
+      <!-- Tarjeta APK: Xuper Premium -->
+      <div class="bg-[#0c372b] border border-[#155442] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group hover:border-emerald-400 transition-all duration-300">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          
+          <div class="flex items-start sm:items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shrink-0 shadow-lg text-2xl font-black">
+              🤖
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Android APK • Para TV
+                </span>
+                <span class="text-xs text-amber-400 font-bold">58.04 MB</span>
+                <span class="text-xs text-emerald-300/50">• v5.0.9</span>
+              </div>
+
+              <h2 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                Xuper Premium 5.0.9 para TV
+              </h2>
+
+              <p class="text-xs text-emerald-100/70 max-w-xl leading-relaxed">
+                Archivo instalador (.apk) optimizado para Android TV, Google TV, Fire TV Stick, TV Box y smartphones.
+              </p>
+            </div>
+          </div>
+
+          <!-- Acciones de Descarga -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
+            <a
+              href="/descargas/xuper.apk"
+              download="Xuper_Premium_5.0.9_TV.apk"
+              class="px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all transform hover:scale-105"
+            >
+              <span>⬇️ Descargar APK</span>
+            </a>
+
+            <button
+              onclick="copyToClipboard('https://energreen.servigest.online/descargas/xuper.apk')"
+              class="px-4 py-3 bg-[#082a21] hover:bg-[#0f4435] border border-[#155442] text-emerald-300 hover:text-white text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5"
+              title="Copiar enlace directo"
+            >
+              <span>📋 Copiar Enlace</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Fila Didáctica con Enlace Corto y Código QR -->
+        <div class="mt-6 pt-6 border-t border-[#155442] grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          
+          <div class="md:col-span-8 space-y-2 text-xs">
+            <p class="font-bold text-white flex items-center gap-1.5">
+              <span>📺 ¿Cómo instalarlo en tu Smart TV o TV Box?</span>
+            </p>
+            <ol class="list-decimal pl-5 space-y-1 text-emerald-100/80">
+              <li>Abre la app <strong>Downloader</strong> o el navegador en tu Smart TV / Firestick.</li>
+              <li>Escribe este enlace corto directo:
+                <code class="bg-[#082a21] px-2 py-0.5 rounded text-amber-300 font-mono select-all ml-1 border border-[#155442]">
+                  energreen.servigest.online/descargas/xuper.apk
+                </code>
+              </li>
+              <li>¡Listo! La descarga e instalación iniciará automáticamente.</li>
+            </ol>
+          </div>
+
+          <!-- Código QR para escanear con el teléfono -->
+          <div class="md:col-span-4 flex items-center md:justify-end gap-3 bg-[#082a21] p-3 rounded-2xl border border-[#155442]">
+            <img 
+              src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https://energreen.servigest.online/descargas/xuper.apk"
+              alt="Código QR de Descarga"
+              class="w-16 h-16 rounded-xl bg-white p-1 shrink-0 shadow-md"
+            />
+            <div class="text-[11px] text-emerald-100/80">
+              <p class="font-bold text-white">Escanea con tu celular</p>
+              <p class="text-[10px] text-emerald-300/60">Apunta la cámara para descargar directo</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Instrucciones de subida -->
+    <div class="mt-8 bg-[#082a21] border border-[#155442] rounded-2xl p-5 text-xs text-emerald-200/70 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="space-y-0.5">
+        <p class="font-bold text-white">💡 Para subir más archivos en el futuro:</p>
+        <p>Copia tus archivos a la carpeta <code class="text-amber-300 font-mono">Descargas/</code> en tu computadora y avísame para sincronizarlos al instante a tu servidor AWS.</p>
+      </div>
+      <a href="/" class="text-emerald-400 hover:underline font-bold shrink-0">Ir a la web principal →</a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#155442] py-6 text-center text-xs text-emerald-300/50 bg-[#031812]">
+    <p>© 2026 ENERGREEN S.A.S. • Servidor AWS en Ohio (18.191.199.104) • energreen.servigest.online</p>
+  </footer>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ ¡Enlace copiado al portapapeles!\n' + text);
+      }).catch(() => {
+        prompt('Copia este enlace:', text);
+      });
+    }
+  </script>
+
+</body>
+</html>
